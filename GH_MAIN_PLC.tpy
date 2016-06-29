@@ -4,7 +4,7 @@
 	<ProjectInfo>
 		<Path>E:\GH_Github\trunk\GH_MAIN_PLC.pro</Path>
 		<IsLibrary>false</IsLibrary>
-		<ChangeDate>2016-06-29T14:13:58</ChangeDate>
+		<ChangeDate>2016-06-29T15:41:22</ChangeDate>
 		<Library>
 			<Name>TcBase.lib</Name>
 			<Path>E:\TWINCAT\PLC\LIB\TcBase.lib</Path>
@@ -114,7 +114,7 @@
 	</DirectoryInfos>
 	<DataTypes>
 		<DataType>
-			<Name Decoration="300002E9" Crc32="3561013970" LastChange="2016-06-29T14:13:57">BRAKE_MODE</Name>
+			<Name Decoration="300002E9" Crc32="3561013970" LastChange="2016-06-29T15:41:22">BRAKE_MODE</Name>
 			<Type>INT</Type>
 			<BitSize>16</BitSize>
 			<EnumInfo>
@@ -131,7 +131,7 @@
 			</EnumInfo>
 		</DataType>
 		<DataType>
-			<Name Decoration="100136F7" Crc32="2015712934" LastChange="2016-06-29T14:13:57">Brake_Motor</Name>
+			<Name Decoration="100136F7" Crc32="2015712934" LastChange="2016-06-29T15:41:22">Brake_Motor</Name>
 			<BitSize>16</BitSize>
 			<SubItem>
 				<Name FbParameter="Input">mode</Name>
@@ -145,7 +145,7 @@
 			</FbInfo>
 		</DataType>
 		<DataType>
-			<Name Decoration="10064F95" Crc32="1343857093" LastChange="2016-06-29T14:13:57">FlashHpuLight</Name>
+			<Name Decoration="10064F95" Crc32="1343857093" LastChange="2016-06-29T15:41:22">FlashHpuLight</Name>
 			<BitSize>296</BitSize>
 			<SubItem>
 				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\STANDARD.LIB">TON1</Name>
@@ -184,12 +184,12 @@
 				<BitOffs>288</BitOffs>
 			</SubItem>
 			<FbInfo>
-				<CodeIndex>513</CodeIndex>
-				<InitIndex>514</InitIndex>
+				<CodeIndex>517</CodeIndex>
+				<InitIndex>518</InitIndex>
 			</FbInfo>
 		</DataType>
 		<DataType>
-			<Name Decoration="10040A0C" Crc32="1005239088" LastChange="2016-06-29T14:13:57">Self_Check</Name>
+			<Name Decoration="10040A0C" Crc32="1005239088" LastChange="2016-06-29T15:41:22">Self_Check</Name>
 			<BitSize>40</BitSize>
 			<SubItem>
 				<Name>s1</Name>
@@ -223,12 +223,12 @@
 				<Properties/>
 			</SubItem>
 			<FbInfo>
-				<CodeIndex>521</CodeIndex>
-				<InitIndex>522</InitIndex>
+				<CodeIndex>525</CodeIndex>
+				<InitIndex>526</InitIndex>
 			</FbInfo>
 		</DataType>
 		<DataType>
-			<Name Decoration="3000044C" Crc32="1662267036" LastChange="2016-06-29T14:13:57">OPERATOR_STATE</Name>
+			<Name Decoration="3000044C" Crc32="1662267036" LastChange="2016-06-29T15:41:22">OPERATOR_STATE</Name>
 			<Type>INT</Type>
 			<BitSize>16</BitSize>
 			<EnumInfo>
@@ -261,7 +261,7 @@
 			</EnumInfo>
 		</DataType>
 		<DataType>
-			<Name Decoration="300002C7" Crc32="2447235516" LastChange="2016-06-29T14:13:57">WORK_MODE</Name>
+			<Name Decoration="300002C7" Crc32="2447235516" LastChange="2016-06-29T15:41:22">WORK_MODE</Name>
 			<Type>INT</Type>
 			<BitSize>16</BitSize>
 			<EnumInfo>
@@ -5438,9 +5438,9 @@
 	</DataTypes>
 	<Functions>
 		<Function>
-			<Name Decoration="10020939" Crc32="3033509638" LastChange="2016-06-29T14:13:57">JudgeEmergency</Name>
+			<Name Decoration="10020939" Crc32="0280528417" LastChange="2016-06-29T15:41:22">JudgeEmergency</Name>
 			<FunInfo>
-				<CodeIndex>518</CodeIndex>
+				<CodeIndex>522</CodeIndex>
 				<ReturnValue>
 					<Name>JudgeEmergency</Name>
 					<Type>BOOL</Type>
@@ -7861,7 +7861,7 @@
 	</Functions>
 	<Programs>
 		<Program>
-			<Name Decoration="1002504F" Crc32="0430665549" LastChange="2016-06-29T14:13:57">EmergencyStop</Name>
+			<Name Decoration="1002504F" Crc32="0430665549" LastChange="2016-06-29T15:41:22">EmergencyStop</Name>
 			<PrgInfo>
 				<CodeIndex>512</CodeIndex>
 				<Symbol>
@@ -7873,15 +7873,15 @@
 			</PrgInfo>
 		</Program>
 		<Program>
-			<Name Decoration="10000000" Crc32="2237347156" LastChange="2016-06-29T14:13:57">InterfaceToLabview</Name>
+			<Name Decoration="10000000" Crc32="2237347156" LastChange="2016-06-29T15:41:22">InterfaceToLabview</Name>
 			<PrgInfo>
-				<CodeIndex>517</CodeIndex>
+				<CodeIndex>521</CodeIndex>
 			</PrgInfo>
 		</Program>
 		<Program>
-			<Name Decoration="10080243" Crc32="2680634267" LastChange="2016-06-29T14:13:57">MAIN</Name>
+			<Name Decoration="10080243" Crc32="2680634267" LastChange="2016-06-29T15:41:22">MAIN</Name>
 			<PrgInfo>
-				<CodeIndex>519</CodeIndex>
+				<CodeIndex>523</CodeIndex>
 				<Symbol>
 					<Name>MAIN.TON1</Name>
 				</Symbol>
@@ -7909,9 +7909,9 @@
 			</PrgInfo>
 		</Program>
 		<Program>
-			<Name Decoration="10000000" Crc32="1237865027" LastChange="2016-06-29T14:13:57">Runshow</Name>
+			<Name Decoration="10000000" Crc32="1237865027" LastChange="2016-06-29T15:41:22">Runshow</Name>
 			<PrgInfo>
-				<CodeIndex>520</CodeIndex>
+				<CodeIndex>524</CodeIndex>
 			</PrgInfo>
 		</Program>
 	</Programs>
@@ -9090,6 +9090,17 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">0</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA2 (EL1004)^Channel 1^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA2 (EL1004)^Channel 2^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA2 (EL1004)^Channel 3^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA2 (EL1004)^Channel 4^Input]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input" TaskPrio="1">.Ctrl_Cab_KA3_EL1004</Name>
@@ -9103,6 +9114,17 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">1</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA3 (EL1004)^Channel 1^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA3 (EL1004)^Channel 2^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA3 (EL1004)^Channel 3^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA3 (EL1004)^Channel 4^Input]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.Ctrl_Cab_KA15_1_EL2004</Name>
@@ -9116,6 +9138,17 @@
 			<IGroup>61488</IGroup>
 			<IOffset VarConfig="Changeable">0</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA15_1 (EL2004)^Channel 1^Output;
+															TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA15_1 (EL2004)^Channel 2^Output;
+															TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA15_1 (EL2004)^Channel 3^Output;
+															TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA15_1 (EL2004)^Channel 4^Output]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.Ctrl_Cab_KA15_2_EL2004</Name>
@@ -9129,6 +9162,17 @@
 			<IGroup>61488</IGroup>
 			<IOffset VarConfig="Changeable">1</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA15_2 (EL2004)^Channel 1^Output;
+															TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA15_2 (EL2004)^Channel 2^Output;
+															TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA15_2 (EL2004)^Channel 3^Output;
+															TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA15_2 (EL2004)^Channel 4^Output]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.Ctrl_Cab_KA15_3_EL2004</Name>
@@ -9139,6 +9183,17 @@
 			<IGroup>61488</IGroup>
 			<IOffset VarConfig="Changeable">2</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA15_3 (EL2004)^Channel 1^Output;
+															TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA15_3 (EL2004)^Channel 2^Output;
+															TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA15_3 (EL2004)^Channel 3^Output;
+															TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA15_3 (EL2004)^Channel 4^Output]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Ctrl_Cab_KA17_EL1004</Name>
@@ -9149,6 +9204,17 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">2</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA17 (EL1004)^Channel 1^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA17 (EL1004)^Channel 2^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA17 (EL1004)^Channel 3^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA17 (EL1004)^Channel 4^Input]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.Ctrl_Cab_KA18_EL4132_1</Name>
@@ -9159,6 +9225,14 @@
 			<IGroup>61488</IGroup>
 			<IOffset VarConfig="Changeable">3</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA18 (EL4132)^Channel 1^Output]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.Ctrl_Cab_KA18_EL4132_2</Name>
@@ -9169,6 +9243,14 @@
 			<IGroup>61488</IGroup>
 			<IOffset VarConfig="Changeable">5</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA18 (EL4132)^Channel 2^Output]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.Ctrl_Cab_KA19_EL4132_1</Name>
@@ -9179,6 +9261,14 @@
 			<IGroup>61488</IGroup>
 			<IOffset VarConfig="Changeable">7</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA19 (EL4132)^Channel 1^Output]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.Ctrl_Cab_KA19_EL4132_2</Name>
@@ -9189,6 +9279,14 @@
 			<IGroup>61488</IGroup>
 			<IOffset VarConfig="Changeable">9</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA19 (EL4132)^Channel 2^Output]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output" TaskPrio="9">.GH_restart_emergency</Name>
@@ -9227,6 +9325,17 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">3</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^HPU_Cabinet(EK1101)^HPU_Cab_KA2 (EL1004)^Channel 1^Input;
+														TIID^Device 3 (EtherCAT)^HPU_Cabinet(EK1101)^HPU_Cab_KA2 (EL1004)^Channel 2^Input;
+														TIID^Device 3 (EtherCAT)^HPU_Cabinet(EK1101)^HPU_Cab_KA2 (EL1004)^Channel 3^Input;
+														TIID^Device 3 (EtherCAT)^HPU_Cabinet(EK1101)^HPU_Cab_KA2 (EL1004)^Channel 4^Input]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input" TaskPrio="1">.HPU_Cab_KA3_EL1004</Name>
@@ -9240,6 +9349,17 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">4</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^HPU_Cabinet(EK1101)^HPU_Cab_KA3 (EL1004)^Channel 1^Input;
+														TIID^Device 3 (EtherCAT)^HPU_Cabinet(EK1101)^HPU_Cab_KA3 (EL1004)^Channel 2^Input;
+														TIID^Device 3 (EtherCAT)^HPU_Cabinet(EK1101)^HPU_Cab_KA3 (EL1004)^Channel 3^Input;
+														TIID^Device 3 (EtherCAT)^HPU_Cabinet(EK1101)^HPU_Cab_KA3 (EL1004)^Channel 4^Input]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.HPU_Cab_KA4_EL1004</Name>
@@ -9253,6 +9373,17 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">5</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^HPU_Cabinet(EK1101)^HPU_Cab_KA4 (EL1004)^Channel 1^Input;
+														TIID^Device 3 (EtherCAT)^HPU_Cabinet(EK1101)^HPU_Cab_KA4 (EL1004)^Channel 2^Input;
+														TIID^Device 3 (EtherCAT)^HPU_Cabinet(EK1101)^HPU_Cab_KA4 (EL1004)^Channel 3^Input;
+														TIID^Device 3 (EtherCAT)^HPU_Cabinet(EK1101)^HPU_Cab_KA4 (EL1004)^Channel 4^Input]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input" TaskPrio="1">.HPU_Cab_KA5_EL1004</Name>
@@ -9266,6 +9397,17 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">6</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^HPU_Cabinet(EK1101)^HPU_Cab_KA5 (EL1004)^Channel 1^Input;
+														TIID^Device 3 (EtherCAT)^HPU_Cabinet(EK1101)^HPU_Cab_KA5 (EL1004)^Channel 2^Input;
+														TIID^Device 3 (EtherCAT)^HPU_Cabinet(EK1101)^HPU_Cab_KA5 (EL1004)^Channel 3^Input;
+														TIID^Device 3 (EtherCAT)^HPU_Cabinet(EK1101)^HPU_Cab_KA5 (EL1004)^Channel 4^Input]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.HPU_Cab_KA7_EL2034</Name>
@@ -9279,6 +9421,17 @@
 			<IGroup>61488</IGroup>
 			<IOffset VarConfig="Changeable">11</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^HPU_Cabinet(EK1101)^HPU_Cab_KA7 (EL2034)^Channel 1^Output;
+														TIID^Device 3 (EtherCAT)^HPU_Cabinet(EK1101)^HPU_Cab_KA7 (EL2034)^Channel 2^Output;
+														TIID^Device 3 (EtherCAT)^HPU_Cabinet(EK1101)^HPU_Cab_KA7 (EL2034)^Channel 3^Output;
+														TIID^Device 3 (EtherCAT)^HPU_Cabinet(EK1101)^HPU_Cab_KA7 (EL2034)^Channel 4^Output]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.HPU_BOX_KA2_EL1004</Name>
@@ -9292,6 +9445,17 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">7</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^HPU_BOX (EK1101)^HPU_Box_KA2 (EL1004)^Channel 1^Input;
+														TIID^Device 3 (EtherCAT)^HPU_BOX (EK1101)^HPU_Box_KA2 (EL1004)^Channel 2^Input;
+														TIID^Device 3 (EtherCAT)^HPU_BOX (EK1101)^HPU_Box_KA2 (EL1004)^Channel 3^Input;
+														TIID^Device 3 (EtherCAT)^HPU_BOX (EK1101)^HPU_Box_KA2 (EL1004)^Channel 4^Input]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.HPU_BOX_KA3_EL1382</Name>
@@ -9303,6 +9467,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">8</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^HPU_BOX (EK1101)^HPU_Box_KA3 (EL1382)^Channel 1^Input;TIID^Device 3 (EtherCAT)^HPU_BOX (EK1101)^HPU_Box_KA3 (EL1382)^Channel 2^Input]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input" TaskPrio="1">.HPU_BOX_KA4_EL3052_1</Name>
@@ -9313,6 +9485,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">9</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^HPU_BOX (EK1101)^HPU_Box_KA4 (EL3052)^AI Standard Channel 1^Value]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input" TaskPrio="1">.HPU_BOX_KA4_EL3052_2</Name>
@@ -9323,6 +9503,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">11</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^HPU_BOX (EK1101)^HPU_Box_KA4 (EL3052)^AI Standard Channel 2^Value]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.HPU_BOX_KA5_EL3052_1</Name>
@@ -9333,6 +9521,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">13</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^HPU_BOX (EK1101)^HPU_Box_KA5 (EL3052)^AI Standard Channel 1^Value]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.HPU_BOX_KA5_EL3052_2</Name>
@@ -9343,6 +9539,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">15</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^HPU_BOX (EK1101)^HPU_Box_KA5 (EL3052)^AI Standard Channel 2^Value]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.HPU_BOX_KA6_EL3202_1</Name>
@@ -9353,6 +9557,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">17</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^HPU_BOX (EK1101)^HPU_Box_KA6 (EL3202-0010)^RTD Inputs Channel 1^Value]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.HPU_BOX_KA6_EL3202_2</Name>
@@ -9363,6 +9575,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">19</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^HPU_BOX (EK1101)^HPU_Box_KA6 (EL3202-0010)^RTD Inputs Channel 2^Value]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.HPU_BOX_KA8_EL2034</Name>
@@ -9376,6 +9596,17 @@
 			<IGroup>61488</IGroup>
 			<IOffset VarConfig="Changeable">12</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^HPU_BOX (EK1101)^HPU_Box_KA8 (EL2034)^Channel 1^Output;
+														TIID^Device 3 (EtherCAT)^HPU_BOX (EK1101)^HPU_Box_KA8 (EL2034)^Channel 2^Output;
+														TIID^Device 3 (EtherCAT)^HPU_BOX (EK1101)^HPU_Box_KA8 (EL2034)^Channel 3^Output;
+														TIID^Device 3 (EtherCAT)^HPU_BOX (EK1101)^HPU_Box_KA8 (EL2034)^Channel 4^Output]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.HPU_BOX_KA9_EL2535_1_Control</Name>
@@ -9383,6 +9614,16 @@
 			<IGroup>61488</IGroup>
 			<IOffset VarConfig="Changeable">13</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^HPU_BOX (EK1101)^HPU_Box_KA9 (EL2535)^PWM Control Channel 1^Control^Enable dithering;
+																	TIID^Device 3 (EtherCAT)^HPU_BOX (EK1101)^HPU_Box_KA9 (EL2535)^PWM Control Channel 1^Control^Enable;
+																	TIID^Device 3 (EtherCAT)^HPU_BOX (EK1101)^HPU_Box_KA9 (EL2535)^PWM Control Channel 1^Control^Reset]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.HPU_BOX_KA9_EL2535_1_PWM</Name>
@@ -9393,6 +9634,14 @@
 			<IGroup>61488</IGroup>
 			<IOffset VarConfig="Changeable">14</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^HPU_BOX (EK1101)^HPU_Box_KA9 (EL2535)^PWM Control Channel 1^PWM output]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.HPU_BOX_KA9_EL2535_2_Control</Name>
@@ -9400,6 +9649,16 @@
 			<IGroup>61488</IGroup>
 			<IOffset VarConfig="Changeable">16</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^HPU_BOX (EK1101)^HPU_Box_KA9 (EL2535)^PWM Control Channel 2^Control^Enable dithering;
+																	TIID^Device 3 (EtherCAT)^HPU_BOX (EK1101)^HPU_Box_KA9 (EL2535)^PWM Control Channel 2^Control^Enable;
+																	TIID^Device 3 (EtherCAT)^HPU_BOX (EK1101)^HPU_Box_KA9 (EL2535)^PWM Control Channel 2^Control^Reset]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.HPU_BOX_KA9_EL2535_2_PWM</Name>
@@ -9410,6 +9669,14 @@
 			<IGroup>61488</IGroup>
 			<IOffset VarConfig="Changeable">17</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^HPU_BOX (EK1101)^HPU_Box_KA9 (EL2535)^PWM Control Channel 2^PWM output]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input" TaskPrio="1">.Oper_Box_KA2_EL1808</Name>
@@ -9427,6 +9694,21 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">21</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA9 (EK1521)^Operator_Box (EK1501)^Oper_Box_KA2 (EL1808)^Channel 1^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA9 (EK1521)^Operator_Box (EK1501)^Oper_Box_KA2 (EL1808)^Channel 2^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA9 (EK1521)^Operator_Box (EK1501)^Oper_Box_KA2 (EL1808)^Channel 3^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA9 (EK1521)^Operator_Box (EK1501)^Oper_Box_KA2 (EL1808)^Channel 4^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA9 (EK1521)^Operator_Box (EK1501)^Oper_Box_KA2 (EL1808)^Channel 5^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA9 (EK1521)^Operator_Box (EK1501)^Oper_Box_KA2 (EL1808)^Channel 6^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA9 (EK1521)^Operator_Box (EK1501)^Oper_Box_KA2 (EL1808)^Channel 7^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA9 (EK1521)^Operator_Box (EK1501)^Oper_Box_KA2 (EL1808)^Channel 8^Input]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output" TaskPrio="1">.Oper_Box_KA5_EL2808</Name>
@@ -9444,6 +9726,21 @@
 			<IGroup>61488</IGroup>
 			<IOffset VarConfig="Changeable">19</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA9 (EK1521)^Operator_Box (EK1501)^Oper_Box_KA5 (EL2808)^Channel 1^Output;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA9 (EK1521)^Operator_Box (EK1501)^Oper_Box_KA5 (EL2808)^Channel 2^Output;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA9 (EK1521)^Operator_Box (EK1501)^Oper_Box_KA5 (EL2808)^Channel 3^Output;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA9 (EK1521)^Operator_Box (EK1501)^Oper_Box_KA5 (EL2808)^Channel 4^Output;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA9 (EK1521)^Operator_Box (EK1501)^Oper_Box_KA5 (EL2808)^Channel 5^Output;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA9 (EK1521)^Operator_Box (EK1501)^Oper_Box_KA5 (EL2808)^Channel 6^Output;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA9 (EK1521)^Operator_Box (EK1501)^Oper_Box_KA5 (EL2808)^Channel 7^Output;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA9 (EK1521)^Operator_Box (EK1501)^Oper_Box_KA5 (EL2808)^Channel 8^Output]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name TaskPrio="1">.workmode</Name>
@@ -9467,6 +9764,17 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">176</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^ROLL(EK1101)^Roll_KA3 (EL1004)^Channel 1^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^ROLL(EK1101)^Roll_KA3 (EL1004)^Channel 2^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^ROLL(EK1101)^Roll_KA3 (EL1004)^Channel 3^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^ROLL(EK1101)^Roll_KA3 (EL1004)^Channel 4^Input]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Roll_KA6_EL3054_1</Name>
@@ -9477,6 +9785,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">177</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^ROLL(EK1101)^Roll_KA6 (EL3054)^AI Standard Channel 1^Value]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Roll_KA6_EL3054_2</Name>
@@ -9487,6 +9803,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">179</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^ROLL(EK1101)^Roll_KA6 (EL3054)^AI Standard Channel 2^Value]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Roll_KA6_EL3054_3</Name>
@@ -9497,6 +9821,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">181</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^ROLL(EK1101)^Roll_KA6 (EL3054)^AI Standard Channel 3^Value]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Roll_KA6_EL3054_4</Name>
@@ -9507,6 +9839,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">183</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^ROLL(EK1101)^Roll_KA6 (EL3054)^AI Standard Channel 4^Value]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Roll_KA7_EL3052_1</Name>
@@ -9517,6 +9857,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">185</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^ROLL(EK1101)^Roll_KA7 (EL3052)^AI Standard Channel 1^Value]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Roll_KA7_EL3052_2</Name>
@@ -9527,6 +9875,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">187</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^ROLL(EK1101)^Roll_KA7 (EL3052)^AI Standard Channel 2^Value]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Roll_KA8_EL3102_1</Name>
@@ -9537,6 +9893,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">189</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^ROLL(EK1101)^Roll_KA8 (EL3102)^AI Standard Channel 1^Value]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Roll_KA8_EL3102_2</Name>
@@ -9547,6 +9911,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">191</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^ROLL(EK1101)^Roll_KA8 (EL3102)^AI Standard Channel 2^Value]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.Roll_KA12_EL4132_1</Name>
@@ -9557,6 +9929,14 @@
 			<IGroup>61488</IGroup>
 			<IOffset VarConfig="Changeable">72</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^ROLL(EK1101)^Roll_KA12 (EL4132)^Channel 1^Output]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.Roll_KA12_EL4132_2</Name>
@@ -9567,6 +9947,14 @@
 			<IGroup>61488</IGroup>
 			<IOffset VarConfig="Changeable">74</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^ROLL(EK1101)^Roll_KA12 (EL4132)^Channel 2^Output]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Roll_NE_Sensor_Status</Name>
@@ -9574,6 +9962,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">39</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^Roll_NE_Sensor (MTS Temposonics)^Inputs^Status 1]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Roll_NE_Sensor_Position</Name>
@@ -9581,6 +9977,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">41</IOffset>
 			<BitSize>32</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^Roll_NE_Sensor (MTS Temposonics)^Inputs^Position 1]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Roll_NE_Sensor_Velocity</Name>
@@ -9591,6 +9995,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">45</IOffset>
 			<BitSize>32</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^Roll_NE_Sensor (MTS Temposonics)^Inputs^Velocity 1]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Roll_NR_Sensor_Status</Name>
@@ -9598,6 +10010,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">49</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^Roll_NR_Sensor (MTS Temposonics)^Inputs^Status 1]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Roll_NR_Sensor_Position</Name>
@@ -9605,6 +10025,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">51</IOffset>
 			<BitSize>32</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^Roll_NR_Sensor (MTS Temposonics)^Inputs^Position 1]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Roll_NR_Sensor_Velocity</Name>
@@ -9615,6 +10043,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">55</IOffset>
 			<BitSize>32</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^Roll_NR_Sensor (MTS Temposonics)^Inputs^Velocity 1]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Pitch_KA3_EL1004</Name>
@@ -9628,6 +10064,17 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">193</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^PITCH(EK1101)^Pitch_KA3 (EL1004)^Channel 1^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^PITCH(EK1101)^Pitch_KA3 (EL1004)^Channel 2^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^PITCH(EK1101)^Pitch_KA3 (EL1004)^Channel 3^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^PITCH(EK1101)^Pitch_KA3 (EL1004)^Channel 4^Input]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Pitch_KA6_EL3054_1</Name>
@@ -9638,6 +10085,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">194</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^PITCH(EK1101)^Pitch_KA6 (EL3054)^AI Standard Channel 1^Value]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Pitch_KA6_EL3054_2</Name>
@@ -9648,6 +10103,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">196</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^PITCH(EK1101)^Pitch_KA6 (EL3054)^AI Standard Channel 2^Value]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Pitch_KA6_EL3054_3</Name>
@@ -9658,6 +10121,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">198</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^PITCH(EK1101)^Pitch_KA6 (EL3054)^AI Standard Channel 3^Value]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Pitch_KA6_EL3054_4</Name>
@@ -9668,6 +10139,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">200</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^PITCH(EK1101)^Pitch_KA6 (EL3054)^AI Standard Channel 4^Value]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Pitch_KA7_EL3052_1</Name>
@@ -9678,6 +10157,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">202</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^PITCH(EK1101)^Pitch_KA7 (EL3052)^AI Standard Channel 1^Value]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Pitch_KA7_EL3052_2</Name>
@@ -9688,6 +10175,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">204</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^PITCH(EK1101)^Pitch_KA7 (EL3052)^AI Standard Channel 2^Value]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Pitch_KA8_EL3102_1</Name>
@@ -9698,6 +10193,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">206</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^PITCH(EK1101)^Pitch_KA8 (EL3102)^AI Standard Channel 1^Value]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Pitch_KA8_EL3102_2</Name>
@@ -9708,6 +10211,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">208</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^PITCH(EK1101)^Pitch_KA8 (EL3102)^AI Standard Channel 2^Value]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.Pitch_KA12_EL4132_1</Name>
@@ -9718,6 +10229,14 @@
 			<IGroup>61488</IGroup>
 			<IOffset VarConfig="Changeable">76</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^PITCH(EK1101)^Pitch_KA12 (EL4132)^Channel 1^Output]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.Pitch_KA12_EL4132_2</Name>
@@ -9728,6 +10247,14 @@
 			<IGroup>61488</IGroup>
 			<IOffset VarConfig="Changeable">78</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^PITCH(EK1101)^Pitch_KA12 (EL4132)^Channel 2^Output]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Pitch_NE_Sensor_Status</Name>
@@ -9735,6 +10262,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">76</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^Pitch_NE_Sensor (MTS Temposonics)^Inputs^Status 1]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Pitch_NE_Sensor_Position</Name>
@@ -9742,6 +10277,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">78</IOffset>
 			<BitSize>32</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^Pitch_NE_Sensor (MTS Temposonics)^Inputs^Position 1]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Pitch_NE_Sensor_Velocity</Name>
@@ -9752,6 +10295,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">82</IOffset>
 			<BitSize>32</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^Pitch_NE_Sensor (MTS Temposonics)^Inputs^Velocity 1]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Pitch_NR_Sensor_Status</Name>
@@ -9759,6 +10310,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">86</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^Pitch_NR_Sensor (MTS Temposonics)^Inputs^Status 1]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Pitch_NR_Sensor_Position</Name>
@@ -9766,6 +10325,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">88</IOffset>
 			<BitSize>32</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^Pitch_NR_Sensor (MTS Temposonics)^Inputs^Position 1]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Pitch_NR_Sensor_Velocity</Name>
@@ -9776,6 +10343,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">92</IOffset>
 			<BitSize>32</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^Pitch_NR_Sensor (MTS Temposonics)^Inputs^Velocity 1]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input" TaskPrio="1">.Yaw1_KA3_EL1004</Name>
@@ -9789,6 +10364,17 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">97</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS1(EK1101)^Yaw1_KA3 (EL1004)^Channel 1^Input;
+													TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS1(EK1101)^Yaw1_KA3 (EL1004)^Channel 2^Input;
+													TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS1(EK1101)^Yaw1_KA3 (EL1004)^Channel 3^Input;
+													TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS1(EK1101)^Yaw1_KA3 (EL1004)^Channel 4^Input]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input" TaskPrio="1">.Yaw1_KA4_EL1004</Name>
@@ -9802,6 +10388,17 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">210</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS1(EK1101)^Yaw1_KA4 (EL1004)^Channel 1^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS1(EK1101)^Yaw1_KA4 (EL1004)^Channel 2^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS1(EK1101)^Yaw1_KA4 (EL1004)^Channel 3^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS1(EK1101)^Yaw1_KA4 (EL1004)^Channel 4^Input]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Yaw1_KA6_EL1382</Name>
@@ -9812,6 +10409,15 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">211</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS1(EK1101)^Yaw1_KA6 (EL1382)^Channel 1^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS1(EK1101)^Yaw1_KA6 (EL1382)^Channel 2^Input]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Yaw1_KA7_EL5002_1_Status</Name>
@@ -9819,6 +10425,19 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">212</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS1(EK1101)^Yaw1_KA7 (EL5002)^SSI Inputs Channel 1^Status^Data error;
+																TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS1(EK1101)^Yaw1_KA7 (EL5002)^SSI Inputs Channel 1^Status^Frame error;
+																TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS1(EK1101)^Yaw1_KA7 (EL5002)^SSI Inputs Channel 1^Status^Power failure;
+																TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS1(EK1101)^Yaw1_KA7 (EL5002)^SSI Inputs Channel 1^Status^Sync error;
+																TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS1(EK1101)^Yaw1_KA7 (EL5002)^SSI Inputs Channel 1^Status^TxPDO State;
+																TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS1(EK1101)^Yaw1_KA7 (EL5002)^SSI Inputs Channel 1^Status^TxPDO Toggle]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Yaw1_KA7_EL5002_1_Value</Name>
@@ -9829,6 +10448,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">213</IOffset>
 			<BitSize>32</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS1(EK1101)^Yaw1_KA7 (EL5002)^SSI Inputs Channel 1^Counter value]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Yaw1_KA7_EL5002_2_Status</Name>
@@ -9836,6 +10463,19 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">217</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS1(EK1101)^Yaw1_KA7 (EL5002)^SSI Inputs Channel 2^Status^Data error;
+																TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS1(EK1101)^Yaw1_KA7 (EL5002)^SSI Inputs Channel 2^Status^Frame error;
+																TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS1(EK1101)^Yaw1_KA7 (EL5002)^SSI Inputs Channel 2^Status^Power failure;
+																TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS1(EK1101)^Yaw1_KA7 (EL5002)^SSI Inputs Channel 2^Status^Sync error;
+																TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS1(EK1101)^Yaw1_KA7 (EL5002)^SSI Inputs Channel 2^Status^TxPDO State;
+																TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS1(EK1101)^Yaw1_KA7 (EL5002)^SSI Inputs Channel 2^Status^TxPDO Toggle]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Yaw1_KA7_EL5002_2_Value</Name>
@@ -9846,6 +10486,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">218</IOffset>
 			<BitSize>32</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS1(EK1101)^Yaw1_KA7 (EL5002)^SSI Inputs Channel 2^Counter value]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output" TaskPrio="9">.Yaw1_KA9_EL2034</Name>
@@ -9859,6 +10507,17 @@
 			<IGroup>61488</IGroup>
 			<IOffset VarConfig="Changeable">80</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS1(EK1101)^Yaw1_KA9 (EL2034)^Channel 1^Output;
+													TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS1(EK1101)^Yaw1_KA9 (EL2034)^Channel 2^Output;
+													TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS1(EK1101)^Yaw1_KA9 (EL2034)^Channel 3^Output;
+													TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS1(EK1101)^Yaw1_KA9 (EL2034)^Channel 4^Output]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Yaw1_Drive_Input</Name>
@@ -9889,6 +10548,17 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">130</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS2 (EK1101)^Yaw2_KA3 (EL1004)^Channel 1^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS2 (EK1101)^Yaw2_KA3 (EL1004)^Channel 2^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS2 (EK1101)^Yaw2_KA3 (EL1004)^Channel 3^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS2 (EK1101)^Yaw2_KA3 (EL1004)^Channel 4^Input]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input" TaskPrio="1">.Yaw2_KA4_EL1004</Name>
@@ -9902,6 +10572,17 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">222</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS2 (EK1101)^Yaw2_KA4 (EL1004)^Channel 1^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS2 (EK1101)^Yaw2_KA4 (EL1004)^Channel 2^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS2 (EK1101)^Yaw2_KA4 (EL1004)^Channel 3^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS2 (EK1101)^Yaw2_KA4 (EL1004)^Channel 4^Input]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Yaw2_KA6_EL1382</Name>
@@ -9912,6 +10593,15 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">223</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS2 (EK1101)^Yaw2_KA6 (EL1382)^Channel 1^Input;
+														TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS2 (EK1101)^Yaw2_KA6 (EL1382)^Channel 2^Input]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Yaw2_KA7_EL5002_1_Status</Name>
@@ -9919,6 +10609,19 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">224</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS2 (EK1101)^Yaw2_KA7 (EL5002)^SSI Inputs Channel 1^Status^Data error;
+																TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS2 (EK1101)^Yaw2_KA7 (EL5002)^SSI Inputs Channel 1^Status^Frame error;
+																TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS2 (EK1101)^Yaw2_KA7 (EL5002)^SSI Inputs Channel 1^Status^Power failure;
+																TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS2 (EK1101)^Yaw2_KA7 (EL5002)^SSI Inputs Channel 1^Status^Sync error;
+																TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS2 (EK1101)^Yaw2_KA7 (EL5002)^SSI Inputs Channel 1^Status^TxPDO State;
+																TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS2 (EK1101)^Yaw2_KA7 (EL5002)^SSI Inputs Channel 1^Status^TxPDO Toggle]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Yaw2_KA7_EL5002_1_Value</Name>
@@ -9929,6 +10632,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">225</IOffset>
 			<BitSize>32</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS2 (EK1101)^Yaw2_KA7 (EL5002)^SSI Inputs Channel 1^Counter value]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Yaw2_KA7_EL5002_2_Status</Name>
@@ -9936,6 +10647,19 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">229</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS2 (EK1101)^Yaw2_KA7 (EL5002)^SSI Inputs Channel 2^Status^Data error;
+																TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS2 (EK1101)^Yaw2_KA7 (EL5002)^SSI Inputs Channel 2^Status^Frame error;
+																TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS2 (EK1101)^Yaw2_KA7 (EL5002)^SSI Inputs Channel 2^Status^Power failure;
+																TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS2 (EK1101)^Yaw2_KA7 (EL5002)^SSI Inputs Channel 2^Status^Sync error;
+																TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS2 (EK1101)^Yaw2_KA7 (EL5002)^SSI Inputs Channel 2^Status^TxPDO State;
+																TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS2 (EK1101)^Yaw2_KA7 (EL5002)^SSI Inputs Channel 2^Status^TxPDO Toggle]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Yaw2_KA7_EL5002_2_Value</Name>
@@ -9946,6 +10670,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">230</IOffset>
 			<BitSize>32</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS2 (EK1101)^Yaw2_KA7 (EL5002)^SSI Inputs Channel 2^Counter value]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output" TaskPrio="9">.Yaw2_KA9_EL2034</Name>
@@ -9959,6 +10691,17 @@
 			<IGroup>61488</IGroup>
 			<IOffset VarConfig="Changeable">81</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS2 (EK1101)^Yaw2_KA9 (EL2034)^Channel 1^Output;
+													TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS2 (EK1101)^Yaw2_KA9 (EL2034)^Channel 2^Output;
+													TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS2 (EK1101)^Yaw2_KA9 (EL2034)^Channel 3^Output;
+													TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS2 (EK1101)^Yaw2_KA9 (EL2034)^Channel 4^Output]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Yaw2_Drive_Input</Name>
@@ -9993,6 +10736,21 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">162</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^Manul_Opertation_Panel(EK1101)^Man_Ope_Pan_KA2 (EL1808)^Channel 1^Input;
+															TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^Manul_Opertation_Panel(EK1101)^Man_Ope_Pan_KA2 (EL1808)^Channel 2^Input;
+															TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^Manul_Opertation_Panel(EK1101)^Man_Ope_Pan_KA2 (EL1808)^Channel 3^Input;
+															TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^Manul_Opertation_Panel(EK1101)^Man_Ope_Pan_KA2 (EL1808)^Channel 4^Input;
+															TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^Manul_Opertation_Panel(EK1101)^Man_Ope_Pan_KA2 (EL1808)^Channel 5^Input;
+															TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^Manul_Opertation_Panel(EK1101)^Man_Ope_Pan_KA2 (EL1808)^Channel 6^Input;
+															TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^Manul_Opertation_Panel(EK1101)^Man_Ope_Pan_KA2 (EL1808)^Channel 7^Input;
+															TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^Manul_Opertation_Panel(EK1101)^Man_Ope_Pan_KA2 (EL1808)^Channel 8^Input]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Man_Ope_Pan_KA4_EL3255_1</Name>
@@ -10003,6 +10761,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">163</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^Manul_Opertation_Panel(EK1101)^Man_Ope_Pan_KA4 (EL3255)^AI Standard Channel 1^Value]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Man_Ope_Pan_KA4_EL3255_2</Name>
@@ -10013,6 +10779,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">165</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^Manul_Opertation_Panel(EK1101)^Man_Ope_Pan_KA4 (EL3255)^AI Standard Channel 2^Value]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Man_Ope_Pan_KA4_EL3255_3</Name>
@@ -10023,6 +10797,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">167</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^Manul_Opertation_Panel(EK1101)^Man_Ope_Pan_KA4 (EL3255)^AI Standard Channel 3^Value]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Man_Ope_Pan_KA4_EL3255_4</Name>
@@ -10033,6 +10815,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">169</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^Manul_Opertation_Panel(EK1101)^Man_Ope_Pan_KA4 (EL3255)^AI Standard Channel 4^Value]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Man_Ope_Pan_KA4_EL3255_5</Name>
@@ -10043,6 +10833,14 @@
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">171</IOffset>
 			<BitSize>16</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^Manul_Opertation_Panel(EK1101)^Man_Ope_Pan_KA4 (EL3255)^AI Standard Channel 5^Value]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.Man_Ope_Pan_KA6_EL2808</Name>
@@ -10060,6 +10858,21 @@
 			<IGroup>61488</IGroup>
 			<IOffset VarConfig="Changeable">70</IOffset>
 			<BitSize>8</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^Manul_Opertation_Panel(EK1101)^Man_Ope_Pan_KA6 (EL2808)^Channel 1^Output;
+															TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^Manul_Opertation_Panel(EK1101)^Man_Ope_Pan_KA6 (EL2808)^Channel 2^Output;
+															TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^Manul_Opertation_Panel(EK1101)^Man_Ope_Pan_KA6 (EL2808)^Channel 3^Output;
+															TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^Manul_Opertation_Panel(EK1101)^Man_Ope_Pan_KA6 (EL2808)^Channel 4^Output;
+															TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^Manul_Opertation_Panel(EK1101)^Man_Ope_Pan_KA6 (EL2808)^Channel 5^Output;
+															TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^Manul_Opertation_Panel(EK1101)^Man_Ope_Pan_KA6 (EL2808)^Channel 6^Output;
+															TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^Manul_Opertation_Panel(EK1101)^Man_Ope_Pan_KA6 (EL2808)^Channel 7^Output;
+															TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^Manul_Opertation_Panel(EK1101)^Man_Ope_Pan_KA6 (EL2808)^Channel 8^Output]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.to_loadposition</Name>
@@ -10067,14 +10880,6 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1888</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard Out Vars TxPDO 1^Standard Out Var 11]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.to_unloadposition</Name>
@@ -10082,14 +10887,6 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1889</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard Out Vars TxPDO 1^Standard Out Var 16]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.to_showposition</Name>
@@ -10097,14 +10894,6 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1890</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard Out Vars TxPDO 1^Standard Out Var 17]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.start_runshow</Name>
@@ -10112,14 +10901,6 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1891</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard Out Vars TxPDO 1^Standard Out Var 18]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input" TaskPrio="1">.GH_emg</Name>
@@ -10127,14 +10908,6 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1892</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard Out Vars TxPDO 1^Standard Out Var 19]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.allow_test</Name>
@@ -10142,14 +10915,6 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1893</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard Out Vars TxPDO 1^Standard Out Var 24]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.pitchstretch_powersup1</Name>
@@ -10157,14 +10922,6 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1894</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard Out Vars TxPDO 1^Standard Out Var 7]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.pitchstretch_powersup2</Name>
@@ -10172,14 +10929,6 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1895</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard Out Vars TxPDO 1^Standard Out Var 8]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.pitchstretch_powersup3</Name>
@@ -10187,14 +10936,6 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1896</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard Out Vars TxPDO 1^Standard Out Var 9]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.pitchstretch_prop_power</Name>
@@ -10202,14 +10943,6 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1897</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard Out Vars TxPDO 1^Standard Out Var 10]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.pitchshort_powersup1</Name>
@@ -10217,14 +10950,6 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1898</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard Out Vars TxPDO 1^Standard Out Var 12]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.pitchshort_powersup2</Name>
@@ -10232,14 +10957,6 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1899</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard Out Vars TxPDO 1^Standard Out Var 13]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.pitchshort_powersup3</Name>
@@ -10247,14 +10964,6 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1900</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard Out Vars TxPDO 1^Standard Out Var 14]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.pitchshort_prop_power</Name>
@@ -10262,14 +10971,6 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1901</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard Out Vars TxPDO 1^Standard Out Var 15]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.rollstretch_powersup1</Name>
@@ -10277,14 +10978,6 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1902</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard Out Vars TxPDO 1^Standard Out Var 3]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.rollstretch_powersup2</Name>
@@ -10292,14 +10985,6 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1903</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard Out Vars TxPDO 1^Standard Out Var 4]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.rollstretch_powersup3</Name>
@@ -10307,14 +10992,6 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1904</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard Out Vars TxPDO 1^Standard Out Var 5]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.rollstretch_prop_power</Name>
@@ -10322,14 +10999,6 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1905</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard Out Vars TxPDO 1^Standard Out Var 6]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.rollshort_powersup1</Name>
@@ -10337,14 +11006,6 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1906</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard Out Vars TxPDO 1^Standard Out Var 20]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.rollshort_powersup2</Name>
@@ -10352,14 +11013,6 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1907</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard Out Vars TxPDO 1^Standard Out Var 21]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.rollshort_powersup3</Name>
@@ -10367,14 +11020,6 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1908</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard Out Vars TxPDO 1^Standard Out Var 22]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.rollshort_prop_power</Name>
@@ -10382,14 +11027,6 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1909</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard Out Vars TxPDO 1^Standard Out Var 23]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Yaw1_error</Name>
@@ -10397,14 +11034,6 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1910</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard Out Vars TxPDO 1^Standard Out Var 2]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Yaw2_error</Name>
@@ -10412,66 +11041,34 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1911</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard Out Vars TxPDO 1^Standard Out Var 1]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name Static="Input" TaskPrio="1">.out_emg</Name>
+			<Name Static="Input" TaskPrio="1">.EmergencyOut</Name>
 			<Type>BOOL</Type>
 			<IGroup>61473</IGroup>
-			<IOffset VarConfig="Changeable">1912</IOffset>
+			<IOffset VarConfig="Unknown">0</IOffset>
 			<BitSize>1</BitSize>
 		</Symbol>
 		<Symbol>
-			<Name Static="Output">.Turnon_state</Name>
+			<Name Static="Output">.Yaw_Not_Enable</Name>
 			<Type>BOOL</Type>
 			<IGroup>61489</IGroup>
-			<IOffset VarConfig="Changeable">672</IOffset>
+			<IOffset VarConfig="Unknown">0</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard In Vars RxPDO 1^Standard In Var 2]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name Static="Output">.Runshow_state</Name>
+			<Name Static="Output">.Roll_Pitch_Not_Enable</Name>
 			<Type>BOOL</Type>
 			<IGroup>61489</IGroup>
-			<IOffset VarConfig="Changeable">673</IOffset>
+			<IOffset VarConfig="Unknown">0</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard In Vars RxPDO 1^Standard In Var 3]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name Static="Output">.Emg_state</Name>
+			<Name Static="Output">.System_No_Emg</Name>
 			<Type>BOOL</Type>
 			<IGroup>61489</IGroup>
-			<IOffset VarConfig="Changeable">674</IOffset>
+			<IOffset VarConfig="Unknown">0</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard In Vars RxPDO 1^Standard In Var 4]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.pitchstretch_prop_en</Name>
@@ -10479,14 +11076,6 @@
 			<IGroup>61489</IGroup>
 			<IOffset VarConfig="Changeable">675</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard In Vars RxPDO 1^Standard In Var 9]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.pitchstretch_emg_en</Name>
@@ -10494,14 +11083,6 @@
 			<IGroup>61489</IGroup>
 			<IOffset VarConfig="Changeable">676</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard In Vars RxPDO 1^Standard In Var 10]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.pitchshort_prop_en</Name>
@@ -10509,14 +11090,6 @@
 			<IGroup>61489</IGroup>
 			<IOffset VarConfig="Changeable">677</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard In Vars RxPDO 1^Standard In Var 11]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.pitchshort_emg_en</Name>
@@ -10524,14 +11097,6 @@
 			<IGroup>61489</IGroup>
 			<IOffset VarConfig="Changeable">678</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard In Vars RxPDO 1^Standard In Var 12]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.rollstretch_prop_en</Name>
@@ -10539,14 +11104,6 @@
 			<IGroup>61489</IGroup>
 			<IOffset VarConfig="Changeable">679</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard In Vars RxPDO 1^Standard In Var 5]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.rollstretch_emg_en</Name>
@@ -10554,14 +11111,6 @@
 			<IGroup>61489</IGroup>
 			<IOffset VarConfig="Changeable">680</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard In Vars RxPDO 1^Standard In Var 6]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.rollshort_prop_en</Name>
@@ -10569,14 +11118,6 @@
 			<IGroup>61489</IGroup>
 			<IOffset VarConfig="Changeable">681</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard In Vars RxPDO 1^Standard In Var 7]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.rollshort_emg_en</Name>
@@ -10584,14 +11125,6 @@
 			<IGroup>61489</IGroup>
 			<IOffset VarConfig="Changeable">682</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard In Vars RxPDO 1^Standard In Var 8]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.Yaw1_en</Name>
@@ -10599,14 +11132,6 @@
 			<IGroup>61489</IGroup>
 			<IOffset VarConfig="Changeable">683</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard In Vars RxPDO 1^Standard In Var 13]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.Yaw2_en</Name>
@@ -10617,14 +11142,6 @@
 			<IGroup>61489</IGroup>
 			<IOffset VarConfig="Changeable">684</IOffset>
 			<BitSize>1</BitSize>
-			<Properties>
-				<Property>
-					<Name>LinkedWith</Name>
-					<Value>
-						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard In Vars RxPDO 1^Standard In Var 14]]>
-					</Value>
-				</Property>
-			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Constant="1" IsDefinedInLibrary="1" Static="MArea">.SystemInfo</Name>
@@ -10644,7 +11161,7 @@
 			<Name IsDefinedInLibrary="1">.eWatchdogConfig</Name>
 			<Type Decoration="30000698">E_WATCHDOG_TIME_CONFIG</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>1336</IOffset>
+			<IOffset>1340</IOffset>
 			<BitSize>16</BitSize>
 		</Symbol>
 		<Symbol>
@@ -10654,14 +11171,14 @@
 				<![CDATA[Watchdog time. Depending of eWatchdogConfig : seconds or minutes]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>1338</IOffset>
+			<IOffset>1342</IOffset>
 			<BitSize>8</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name IsDefinedInLibrary="1">.TcMcGlobal</Name>
 			<Type Decoration="1014BD9C">_TCMCGLOBAL</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>1339</IOffset>
+			<IOffset>1343</IOffset>
 			<BitSize>6488</BitSize>
 		</Symbol>
 	</Symbols>
