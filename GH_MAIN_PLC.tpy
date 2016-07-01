@@ -4,7 +4,7 @@
 	<ProjectInfo>
 		<Path>E:\GH_Github\trunk\GH_MAIN_PLC.pro</Path>
 		<IsLibrary>false</IsLibrary>
-		<ChangeDate>2016-06-30T17:03:12</ChangeDate>
+		<ChangeDate>2016-07-01T14:24:29</ChangeDate>
 		<Library>
 			<Name>TcBase.lib</Name>
 			<Path>E:\TWINCAT\PLC\LIB\TcBase.lib</Path>
@@ -72,38 +72,29 @@
 	<TaskInfos>
 		<TaskInfo>
 			<Name>Standard</Name>
-			<Priority>0</Priority>
-			<CycleTime>1</CycleTime>
-			<CycleTimeUs>1000</CycleTimeUs>
+			<Priority>1</Priority>
+			<CycleTime>2</CycleTime>
+			<CycleTimeUs>2000</CycleTimeUs>
 			<Calls>
 				<ProgramCall>MAIN</ProgramCall>
 			</Calls>
 		</TaskInfo>
 		<TaskInfo>
-			<Name>RunShow</Name>
-			<Priority>2</Priority>
-			<CycleTime>1</CycleTime>
-			<CycleTimeUs>1000</CycleTimeUs>
-			<Calls>
-				<ProgramCall>Runshow</ProgramCall>
-			</Calls>
-		</TaskInfo>
-		<TaskInfo>
 			<Name>InterfaceConnect</Name>
-			<Priority>3</Priority>
-			<CycleTime>1</CycleTime>
-			<CycleTimeUs>1000</CycleTimeUs>
+			<Priority>2</Priority>
+			<CycleTime>5</CycleTime>
+			<CycleTimeUs>5000</CycleTimeUs>
 			<Calls>
 				<ProgramCall>InterfaceToLabview</ProgramCall>
 			</Calls>
 		</TaskInfo>
 		<TaskInfo>
 			<Name>EmergencyMonitor</Name>
-			<Priority>1</Priority>
+			<Priority>0</Priority>
 			<CycleTime>1</CycleTime>
 			<CycleTimeUs>1000</CycleTimeUs>
 			<Calls>
-				<ProgramCall>EmergencyStop</ProgramCall>
+				<ProgramCall>ProblemMonitor</ProgramCall>
 			</Calls>
 		</TaskInfo>
 	</TaskInfos>
@@ -119,7 +110,7 @@
 	</DirectoryInfos>
 	<DataTypes>
 		<DataType>
-			<Name Decoration="300002E9" Crc32="3561013970" LastChange="2016-06-30T17:03:11">BRAKE_MODE</Name>
+			<Name Decoration="300002E9" Crc32="3561013970" LastChange="2016-07-01T14:24:28">BRAKE_MODE</Name>
 			<Type>INT</Type>
 			<BitSize>16</BitSize>
 			<EnumInfo>
@@ -136,7 +127,7 @@
 			</EnumInfo>
 		</DataType>
 		<DataType>
-			<Name Decoration="100136F7" Crc32="2015712934" LastChange="2016-06-30T17:03:11">Brake_Motor</Name>
+			<Name Decoration="100136F7" Crc32="2015712934" LastChange="2016-07-01T14:24:28">Brake_Motor</Name>
 			<BitSize>16</BitSize>
 			<SubItem>
 				<Name FbParameter="Input">mode</Name>
@@ -150,25 +141,22 @@
 			</FbInfo>
 		</DataType>
 		<DataType>
-			<Name Decoration="10030AED" Crc32="3318193784" LastChange="2016-06-30T17:03:11">ExecButtonCommander</Name>
-			<BitSize>96</BitSize>
+			<Name Decoration="100205A3" Crc32="2749284312" LastChange="2016-07-01T14:24:28">CoolingPumpControl</Name>
+			<BitSize>16</BitSize>
 			<SubItem>
-				<Name>Roll_Vel</Name>
-				<Type>REAL</Type>
-				<BitSize>32</BitSize>
+				<Name FbParameter="Input">operate</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[true：开启；false：关闭]]>
+				</Comment>
+				<BitSize>8</BitSize>
 				<BitOffs>0</BitOffs>
 			</SubItem>
 			<SubItem>
-				<Name>Pitch_Vel</Name>
-				<Type>REAL</Type>
-				<BitSize>32</BitSize>
-				<BitOffs>32</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>Yaw_Vel</Name>
-				<Type>REAL</Type>
-				<BitSize>32</BitSize>
-				<BitOffs>64</BitOffs>
+				<Name FbParameter="Output">Done</Name>
+				<Type>BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>8</BitOffs>
 			</SubItem>
 			<FbInfo>
 				<CodeIndex>978</CodeIndex>
@@ -176,8 +164,364 @@
 			</FbInfo>
 		</DataType>
 		<DataType>
-			<Name Decoration="1009EFE2" Crc32="3475474328" LastChange="2016-06-30T17:03:11">Yaw_To_Position</Name>
-			<BitSize>26656</BitSize>
+			<Name Decoration="10040DCF" Crc32="1736290151" LastChange="2016-07-01T14:24:28">EL3052AIToReal</Name>
+			<BitSize>112</BitSize>
+			<SubItem>
+				<Name FbParameter="Input">MaxValue</Name>
+				<Type>REAL</Type>
+				<Comment>
+					<![CDATA[通道对应的最大量程]]>
+				</Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input">MinValue</Name>
+				<Type>REAL</Type>
+				<Comment>
+					<![CDATA[通道对应的最小量程]]>
+				</Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>32</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input">AIValue</Name>
+				<Type>INT</Type>
+				<Comment>
+					<![CDATA[EL3052模拟输入值]]>
+				</Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>64</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output">RealValue</Name>
+				<Type>REAL</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>80</BitOffs>
+			</SubItem>
+			<FbInfo>
+				<CodeIndex>980</CodeIndex>
+				<InitIndex>981</InitIndex>
+			</FbInfo>
+			<Properties/>
+		</DataType>
+		<DataType>
+			<Name Decoration="1001022F" Crc32="2698339616" LastChange="2016-07-01T14:24:28">HPUOverheatingMonitor</Name>
+			<BitSize>8</BitSize>
+			<SubItem>
+				<Name FbParameter="Output">out</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[true:正常]]>
+				</Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<FbInfo>
+				<CodeIndex>990</CodeIndex>
+				<InitIndex>991</InitIndex>
+			</FbInfo>
+		</DataType>
+		<DataType>
+			<Name Decoration="1001022F" Crc32="1345154804" LastChange="2016-07-01T14:24:28">HPU_Cab_FUSE_CHECK</Name>
+			<BitSize>8</BitSize>
+			<SubItem>
+				<Name FbParameter="Output">OUT</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[true:正常]]>
+				</Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<FbInfo>
+				<CodeIndex>986</CodeIndex>
+				<InitIndex>987</InitIndex>
+			</FbInfo>
+		</DataType>
+		<DataType>
+			<Name Decoration="30000271" Crc32="2275294639" LastChange="2016-07-01T14:24:28">HPU_MODE</Name>
+			<Type>INT</Type>
+			<BitSize>16</BitSize>
+			<EnumInfo>
+				<Text>HPU_START</Text>
+				<Enum>0</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text>HPU_PAUSE</Text>
+				<Enum>1</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text>HPU_STOP</Text>
+				<Enum>2</Enum>
+			</EnumInfo>
+		</DataType>
+		<DataType>
+			<Name Decoration="100B02DD" Crc32="1728660848" LastChange="2016-07-01T14:24:28">HPU_Control</Name>
+			<BitSize>456</BitSize>
+			<SubItem>
+				<Name>fuse_ok</Name>
+				<Type>BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Temp</Name>
+				<Type Decoration="10040DCF">EL3052AIToReal</Type>
+				<BitSize>112</BitSize>
+				<BitOffs>8</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>tempReal</Name>
+				<Type>REAL</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>120</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>CoolingPumpControl1</Name>
+				<Type Decoration="100205A3">CoolingPumpControl</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>152</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>HPUOverheatingMonitor1</Name>
+				<Type Decoration="1001022F">HPUOverheatingMonitor</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>168</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>tempProtect_ok</Name>
+				<Type>BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>176</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\STANDARD.LIB">TON1</Name>
+				<Type Decoration="10060D24">TON</Type>
+				<BitSize>120</BitSize>
+				<BitOffs>184</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\STANDARD.LIB">TON2</Name>
+				<Type Decoration="10060D24">TON</Type>
+				<BitSize>120</BitSize>
+				<BitOffs>304</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>HPU_Cab_FUSE_CHECK1</Name>
+				<Type Decoration="1001022F">HPU_Cab_FUSE_CHECK</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>424</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input">MODE</Name>
+				<Type Decoration="30000271">HPU_MODE</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>432</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output">Done</Name>
+				<Type>BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>448</BitOffs>
+			</SubItem>
+			<FbInfo>
+				<CodeIndex>988</CodeIndex>
+				<InitIndex>989</InitIndex>
+			</FbInfo>
+		</DataType>
+		<DataType>
+			<Name Decoration="300002C7" Crc32="2447235516" LastChange="2016-07-01T14:24:28">WORK_MODE</Name>
+			<Type>INT</Type>
+			<BitSize>16</BitSize>
+			<EnumInfo>
+				<Text>TestMode</Text>
+				<Enum>0</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text>AutoMode</Text>
+				<Enum>1</Enum>
+			</EnumInfo>
+		</DataType>
+		<DataType>
+			<Name Decoration="1005C9A9" Crc32="1129026671" LastChange="2016-07-01T14:24:28">RunRollNE</Name>
+			<BitSize>1784</BitSize>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">FB_BasicPID1</Name>
+				<Type Decoration="10217356">FB_BasicPID</Type>
+				<BitSize>1696</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input">externData</Name>
+				<Type>REAL</Type>
+				<Comment>
+					<![CDATA[自动模式时为位移信号，手动模式时为速度信号]]>
+				</Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>1696</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input">radio</Name>
+				<Type>REAL</Type>
+				<Comment>
+					<![CDATA[换算系数]]>
+				</Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>1728</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input">mode</Name>
+				<Type Decoration="300002C7">WORK_MODE</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>1760</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output">done</Name>
+				<Type>BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>1776</BitOffs>
+			</SubItem>
+			<FbInfo>
+				<CodeIndex>1000</CodeIndex>
+				<InitIndex>1001</InitIndex>
+			</FbInfo>
+		</DataType>
+		<DataType>
+			<Name Decoration="1005C9BA" Crc32="0907765357" LastChange="2016-07-01T14:24:28">RunRollNR</Name>
+			<BitSize>1784</BitSize>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">FB_BasicPID2</Name>
+				<Type Decoration="10217356">FB_BasicPID</Type>
+				<BitSize>1696</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input">externData</Name>
+				<Type>REAL</Type>
+				<Comment>
+					<![CDATA[自动模式时为位移信号，手动模式时为速度信号]]>
+				</Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>1696</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input">radio</Name>
+				<Type>REAL</Type>
+				<Comment>
+					<![CDATA[换算系数]]>
+				</Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>1728</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input">mode</Name>
+				<Type Decoration="300002C7">WORK_MODE</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>1760</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output">done</Name>
+				<Type>BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>1776</BitOffs>
+			</SubItem>
+			<FbInfo>
+				<CodeIndex>1002</CodeIndex>
+				<InitIndex>1003</InitIndex>
+			</FbInfo>
+		</DataType>
+		<DataType>
+			<Name Decoration="1005C9BB" Crc32="0090957293" LastChange="2016-07-01T14:24:28">RunPitchNE</Name>
+			<BitSize>1784</BitSize>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">FB_BasicPID3</Name>
+				<Type Decoration="10217356">FB_BasicPID</Type>
+				<BitSize>1696</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input">externData</Name>
+				<Type>REAL</Type>
+				<Comment>
+					<![CDATA[自动模式时为位移信号，手动模式时为速度信号]]>
+				</Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>1696</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input">radio</Name>
+				<Type>REAL</Type>
+				<Comment>
+					<![CDATA[换算系数]]>
+				</Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>1728</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input">mode</Name>
+				<Type Decoration="300002C7">WORK_MODE</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>1760</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output">done</Name>
+				<Type>BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>1776</BitOffs>
+			</SubItem>
+			<FbInfo>
+				<CodeIndex>996</CodeIndex>
+				<InitIndex>997</InitIndex>
+			</FbInfo>
+		</DataType>
+		<DataType>
+			<Name Decoration="1005C9BC" Crc32="3435796797" LastChange="2016-07-01T14:24:28">RunPitchNR</Name>
+			<BitSize>1784</BitSize>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">FB_BasicPID4</Name>
+				<Type Decoration="10217356">FB_BasicPID</Type>
+				<BitSize>1696</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input">externData</Name>
+				<Type>REAL</Type>
+				<Comment>
+					<![CDATA[自动模式时为位移信号，手动模式时为速度信号]]>
+				</Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>1696</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input">radio</Name>
+				<Type>REAL</Type>
+				<Comment>
+					<![CDATA[换算系数]]>
+				</Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>1728</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input">mode</Name>
+				<Type Decoration="300002C7">WORK_MODE</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>1760</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output">done</Name>
+				<Type>BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>1776</BitOffs>
+			</SubItem>
+			<FbInfo>
+				<CodeIndex>998</CodeIndex>
+				<InitIndex>999</InitIndex>
+			</FbInfo>
+		</DataType>
+		<DataType>
+			<Name Decoration="100DCCE5" Crc32="2283858565" LastChange="2016-07-01T14:24:28">Yaw_To_Position</Name>
+			<BitSize>89792</BitSize>
 			<SubItem>
 				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">MC_MoveAbsolute1</Name>
 				<Type Decoration="1013803E">MC_MoveAbsolute</Type>
@@ -203,68 +547,142 @@
 				<BitOffs>19456</BitOffs>
 			</SubItem>
 			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">MC_Jog1</Name>
+				<Type Decoration="102780BA">MC_Jog</Type>
+				<BitSize>31112</BitSize>
+				<BitOffs>26544</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">MC_Power1</Name>
+				<Type Decoration="100EAABA">MC_Power</Type>
+				<BitSize>464</BitSize>
+				<BitOffs>57656</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">MC_Power2</Name>
+				<Type Decoration="100EAABA">MC_Power</Type>
+				<BitSize>464</BitSize>
+				<BitOffs>58120</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">MC_Jog2</Name>
+				<Type Decoration="102780BA">MC_Jog</Type>
+				<BitSize>31112</BitSize>
+				<BitOffs>58584</BitOffs>
+			</SubItem>
+			<SubItem>
 				<Name FbParameter="Input">yaw_is_enabled</Name>
 				<Type>BOOL</Type>
 				<BitSize>8</BitSize>
-				<BitOffs>26544</BitOffs>
+				<BitOffs>89696</BitOffs>
 			</SubItem>
 			<SubItem>
 				<Name FbParameter="Input">angle_in</Name>
 				<Type>REAL</Type>
 				<BitSize>32</BitSize>
-				<BitOffs>26552</BitOffs>
+				<BitOffs>89704</BitOffs>
 			</SubItem>
 			<SubItem>
-				<Name FbParameter="Input">vel_in</Name>
-				<Type>REAL</Type>
-				<BitSize>32</BitSize>
-				<BitOffs>26584</BitOffs>
+				<Name FbParameter="Input">mode</Name>
+				<Type Decoration="300002C7">WORK_MODE</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>89736</BitOffs>
 			</SubItem>
 			<SubItem>
 				<Name FbParameter="Output">yaw_is_in_position</Name>
 				<Type>BOOL</Type>
 				<BitSize>8</BitSize>
-				<BitOffs>26616</BitOffs>
+				<BitOffs>89752</BitOffs>
 			</SubItem>
 			<SubItem>
 				<Name FbParameter="Output">angle_out</Name>
 				<Type>REAL</Type>
 				<BitSize>32</BitSize>
-				<BitOffs>26624</BitOffs>
+				<BitOffs>89760</BitOffs>
 			</SubItem>
 			<FbInfo>
-				<CodeIndex>994</CodeIndex>
-				<InitIndex>995</InitIndex>
+				<CodeIndex>1004</CodeIndex>
+				<InitIndex>1005</InitIndex>
 			</FbInfo>
 		</DataType>
 		<DataType>
-			<Name Decoration="10031D00" Crc32="0198597135" LastChange="2016-06-30T17:03:11">ExecGHCommander</Name>
-			<BitSize>79968</BitSize>
+			<Name Decoration="1008708F" Crc32="2375939173" LastChange="2016-07-01T14:24:28">ExecButtonCommander</Name>
+			<BitSize>97024</BitSize>
 			<SubItem>
-				<Name>Yaw_To_Position1</Name>
-				<Type Decoration="1009EFE2">Yaw_To_Position</Type>
-				<BitSize>26656</BitSize>
+				<Name>Roll_Vel</Name>
+				<Type>REAL</Type>
+				<BitSize>32</BitSize>
 				<BitOffs>0</BitOffs>
 			</SubItem>
 			<SubItem>
-				<Name>Yaw_To_Position2</Name>
-				<Type Decoration="1009EFE2">Yaw_To_Position</Type>
-				<BitSize>26656</BitSize>
-				<BitOffs>26656</BitOffs>
+				<Name>Pitch_Vel</Name>
+				<Type>REAL</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>32</BitOffs>
 			</SubItem>
 			<SubItem>
-				<Name>Yaw_To_Position3</Name>
-				<Type Decoration="1009EFE2">Yaw_To_Position</Type>
-				<BitSize>26656</BitSize>
-				<BitOffs>53312</BitOffs>
+				<Name>Yaw_Vel</Name>
+				<Type>REAL</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>64</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>RunRollNE1</Name>
+				<Type Decoration="1005C9A9">RunRollNE</Type>
+				<BitSize>1784</BitSize>
+				<BitOffs>96</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>RunRollNR1</Name>
+				<Type Decoration="1005C9BA">RunRollNR</Type>
+				<BitSize>1784</BitSize>
+				<BitOffs>1880</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>RunPitchNE1</Name>
+				<Type Decoration="1005C9BB">RunPitchNE</Type>
+				<BitSize>1784</BitSize>
+				<BitOffs>3664</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>RunPitchNR1</Name>
+				<Type Decoration="1005C9BC">RunPitchNR</Type>
+				<BitSize>1784</BitSize>
+				<BitOffs>5448</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Yaw_To_Position1</Name>
+				<Type Decoration="100DCCE5">Yaw_To_Position</Type>
+				<BitSize>89792</BitSize>
+				<BitOffs>7232</BitOffs>
 			</SubItem>
 			<FbInfo>
-				<CodeIndex>980</CodeIndex>
-				<InitIndex>981</InitIndex>
+				<CodeIndex>982</CodeIndex>
+				<InitIndex>983</InitIndex>
 			</FbInfo>
 		</DataType>
 		<DataType>
-			<Name Decoration="10064F95" Crc32="1343857093" LastChange="2016-06-30T17:03:11">FlashHpuLight</Name>
+			<Name Decoration="1002E9AA" Crc32="3710141233" LastChange="2016-07-01T14:24:28">ExecGHCommander</Name>
+			<BitSize>89800</BitSize>
+			<SubItem>
+				<Name>Yaw_To_Position1</Name>
+				<Type Decoration="100DCCE5">Yaw_To_Position</Type>
+				<BitSize>89792</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>finish</Name>
+				<Type>BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>89792</BitOffs>
+			</SubItem>
+			<FbInfo>
+				<CodeIndex>984</CodeIndex>
+				<InitIndex>985</InitIndex>
+			</FbInfo>
+		</DataType>
+		<DataType>
+			<Name Decoration="10064F95" Crc32="1343857093" LastChange="2016-07-01T14:24:28">FlashHpuLight</Name>
 			<BitSize>296</BitSize>
 			<SubItem>
 				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\STANDARD.LIB">TON1</Name>
@@ -308,7 +726,7 @@
 			</FbInfo>
 		</DataType>
 		<DataType>
-			<Name Decoration="10040A0C" Crc32="4170062612" LastChange="2016-06-30T17:03:11">Self_Check</Name>
+			<Name Decoration="10040A0C" Crc32="4170062612" LastChange="2016-07-01T14:24:28">Self_Check</Name>
 			<BitSize>40</BitSize>
 			<SubItem>
 				<Name>s1</Name>
@@ -347,49 +765,57 @@
 			</FbInfo>
 		</DataType>
 		<DataType>
-			<Name Decoration="300002C7" Crc32="2447235516" LastChange="2016-06-30T17:03:11">WORK_MODE</Name>
-			<Type>INT</Type>
-			<BitSize>16</BitSize>
-			<EnumInfo>
-				<Text>TestMode</Text>
-				<Enum>0</Enum>
-			</EnumInfo>
-			<EnumInfo>
-				<Text>AutoMode</Text>
-				<Enum>1</Enum>
-			</EnumInfo>
+			<Name Decoration="1001022F" Crc32="0275351353" LastChange="2016-07-01T14:24:28">MotorMonitor</Name>
+			<BitSize>8</BitSize>
+			<SubItem>
+				<Name FbParameter="Output">out</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[true:正常]]>
+				</Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<FbInfo>
+				<CodeIndex>992</CodeIndex>
+				<InitIndex>993</InitIndex>
+			</FbInfo>
 		</DataType>
 		<DataType>
-			<Name Decoration="3000044C" Crc32="2591820158" LastChange="2016-06-30T17:03:11">OPERATOR_STATE</Name>
+			<Name Decoration="3000044C" Crc32="0901845109" LastChange="2016-07-01T14:24:28">OPERATOR_STATE</Name>
 			<Type>INT</Type>
 			<BitSize>16</BitSize>
 			<EnumInfo>
-				<Text>Init</Text>
+				<Text>EmergencyState</Text>
 				<Enum>0</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text>Init</Text>
+				<Enum>1</Enum>
 			</EnumInfo>
 			<EnumInfo>
 				<Text>SelfCheck</Text>
-				<Enum>1</Enum>
-			</EnumInfo>
-			<EnumInfo>
-				<Text>ModeJudge</Text>
 				<Enum>2</Enum>
 			</EnumInfo>
 			<EnumInfo>
-				<Text>Start</Text>
+				<Text>ModeJudge</Text>
 				<Enum>3</Enum>
 			</EnumInfo>
 			<EnumInfo>
-				<Text>WaitForGH</Text>
+				<Text>Start</Text>
 				<Enum>4</Enum>
 			</EnumInfo>
 			<EnumInfo>
-				<Text>WaitForManual</Text>
+				<Text>WaitForGH</Text>
 				<Enum>5</Enum>
 			</EnumInfo>
 			<EnumInfo>
-				<Text>ShutDown</Text>
+				<Text>WaitForManual</Text>
 				<Enum>6</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text>ShutDown</Text>
+				<Enum>7</Enum>
 			</EnumInfo>
 		</DataType>
 		<DataType>
@@ -6905,6 +7331,46 @@
 			</EnumInfo>
 		</DataType>
 		<DataType>
+			<Name Decoration="10061373" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">ST_McOutputs</Name>
+			<BitSize>72</BitSize>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Done</Name>
+				<Type>BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Busy</Name>
+				<Type>BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>8</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Active</Name>
+				<Type>BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>16</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">CommandAborted</Name>
+				<Type>BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>24</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Error</Name>
+				<Type>BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>32</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">ErrorID</Name>
+				<Type>UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>40</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
 			<Name Decoration="300002E5" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">E_ReadMode</Name>
 			<Type>INT</Type>
 			<BitSize>16</BitSize>
@@ -7017,6 +7483,146 @@
 			</EnumInfo>
 		</DataType>
 		<DataType>
+			<Name Decoration="101073B8" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">MC_Halt</Name>
+			<BitSize>5992</BitSize>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">LastExecutionResult</Name>
+				<Type Decoration="10040DFF">_ST_FunctionBlockResults</Type>
+				<BitSize>56</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">ADSbusy</Name>
+				<Type>BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>56</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">MoveGeneric</Name>
+				<Type Decoration="1032983B">_FB_MoveUniversalGeneric</Type>
+				<BitSize>5456</BitSize>
+				<BitOffs>64</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">CmdNo</Name>
+				<Type>UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>5520</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Execute</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[B]]>
+				</Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>5536</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Deceleration</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[E]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>5544</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Jerk</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[E]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>5608</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">BufferMode</Name>
+				<Type Decoration="300003CE">MC_BufferMode</Type>
+				<Comment>
+					<![CDATA[E]]>
+				</Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>5672</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Options</Name>
+				<Type Decoration="100417F6">ST_MoveOptions</Type>
+				<Comment>
+					<![CDATA[V]]>
+				</Comment>
+				<BitSize>200</BitSize>
+				<BitOffs>5688</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Done</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[B]]>
+				</Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>5888</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Busy</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[E]]>
+				</Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>5896</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Active</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[E]]>
+				</Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>5904</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">CommandAborted</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[E]]>
+				</Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>5912</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Error</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[B]]>
+				</Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>5920</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">ErrorID</Name>
+				<Type>UDINT</Type>
+				<Comment>
+					<![CDATA[E]]>
+				</Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>5928</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="InOut" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Axis</Name>
+				<Type Decoration="1006BE2E" Pointer="1">_FBAXIS_REF</Type>
+				<Comment>
+					<![CDATA[B]]>
+				</Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>5960</BitOffs>
+			</SubItem>
+			<FbInfo>
+				<CodeIndex>325</CodeIndex>
+				<InitIndex>326</InitIndex>
+			</FbInfo>
+		</DataType>
+		<DataType>
 			<Name Decoration="300003D6" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">MC_HomingMode</Name>
 			<Type>INT</Type>
 			<BitSize>16</BitSize>
@@ -7077,6 +7683,173 @@
 				<Text>MC_Current_Direction</Text>
 				<Enum>4</Enum>
 			</EnumInfo>
+		</DataType>
+		<DataType>
+			<Name Decoration="1013B829" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">MC_MoveVelocity</Name>
+			<BitSize>6136</BitSize>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">LastExecutionResult</Name>
+				<Type Decoration="10040DFF">_ST_FunctionBlockResults</Type>
+				<BitSize>56</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">ADSbusy</Name>
+				<Type>BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>56</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">MoveGeneric</Name>
+				<Type Decoration="1032983B">_FB_MoveUniversalGeneric</Type>
+				<BitSize>5456</BitSize>
+				<BitOffs>64</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">CmdNo</Name>
+				<Type>UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>5520</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Execute</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[B]]>
+				</Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>5536</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Velocity</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[E]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>5544</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Acceleration</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[E]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>5608</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Deceleration</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[E]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>5672</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Jerk</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[E]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>5736</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Direction</Name>
+				<Type Decoration="30000390">MC_Direction</Type>
+				<Comment>
+					<![CDATA[E]]>
+				</Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>5800</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">BufferMode</Name>
+				<Type Decoration="300003CE">MC_BufferMode</Type>
+				<Comment>
+					<![CDATA[E]]>
+				</Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>5816</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Options</Name>
+				<Type Decoration="100417F6">ST_MoveOptions</Type>
+				<Comment>
+					<![CDATA[V]]>
+				</Comment>
+				<BitSize>200</BitSize>
+				<BitOffs>5832</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">InVelocity</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[B]]>
+				</Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>6032</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Busy</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[E]]>
+				</Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>6040</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Active</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[E]]>
+				</Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>6048</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">CommandAborted</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[E]]>
+				</Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>6056</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Error</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[B]]>
+				</Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>6064</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">ErrorID</Name>
+				<Type>UDINT</Type>
+				<Comment>
+					<![CDATA[E]]>
+				</Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>6072</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="InOut" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Axis</Name>
+				<Type Decoration="1006BE2E" Pointer="1">_FBAXIS_REF</Type>
+				<Comment>
+					<![CDATA[B]]>
+				</Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>6104</BitOffs>
+			</SubItem>
+			<FbInfo>
+				<CodeIndex>348</CodeIndex>
+				<InitIndex>349</InitIndex>
+			</FbInfo>
 		</DataType>
 		<DataType>
 			<Name Decoration="1013803E" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">MC_MoveAbsolute</Name>
@@ -7246,6 +8019,173 @@
 			</FbInfo>
 		</DataType>
 		<DataType>
+			<Name Decoration="10138030" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">MC_MoveRelative</Name>
+			<BitSize>6184</BitSize>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">LastExecutionResult</Name>
+				<Type Decoration="10040DFF">_ST_FunctionBlockResults</Type>
+				<BitSize>56</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">ADSbusy</Name>
+				<Type>BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>56</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">MoveGeneric</Name>
+				<Type Decoration="1032983B">_FB_MoveUniversalGeneric</Type>
+				<BitSize>5456</BitSize>
+				<BitOffs>64</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">CmdNo</Name>
+				<Type>UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>5520</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Execute</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[B]]>
+				</Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>5536</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Distance</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[B]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>5544</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Velocity</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[E]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>5608</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Acceleration</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[E]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>5672</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Deceleration</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[E]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>5736</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Jerk</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[E]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>5800</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">BufferMode</Name>
+				<Type Decoration="300003CE">MC_BufferMode</Type>
+				<Comment>
+					<![CDATA[E]]>
+				</Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>5864</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Options</Name>
+				<Type Decoration="100417F6">ST_MoveOptions</Type>
+				<Comment>
+					<![CDATA[V]]>
+				</Comment>
+				<BitSize>200</BitSize>
+				<BitOffs>5880</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Done</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[B]]>
+				</Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>6080</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Busy</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[E]]>
+				</Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>6088</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Active</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[E]]>
+				</Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>6096</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">CommandAborted</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[E]]>
+				</Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>6104</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Error</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[B]]>
+				</Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>6112</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">ErrorID</Name>
+				<Type>UDINT</Type>
+				<Comment>
+					<![CDATA[E]]>
+				</Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>6120</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="InOut" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Axis</Name>
+				<Type Decoration="1006BE2E" Pointer="1">_FBAXIS_REF</Type>
+				<Comment>
+					<![CDATA[B]]>
+				</Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>6152</BitOffs>
+			</SubItem>
+			<FbInfo>
+				<CodeIndex>344</CodeIndex>
+				<InitIndex>345</InitIndex>
+			</FbInfo>
+		</DataType>
+		<DataType>
 			<Name Decoration="300002A9" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">E_JogMode</Name>
 			<Type>INT</Type>
 			<BitSize>16</BitSize>
@@ -7269,6 +8209,259 @@
 				<Text>MC_JOGMODE_INCHING_MODULO</Text>
 				<Enum>4</Enum>
 			</EnumInfo>
+		</DataType>
+		<DataType>
+			<Name Decoration="102780BA" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">MC_Jog</Name>
+			<BitSize>31112</BitSize>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">state</Name>
+				<Type>INT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">LastExecutionResult</Name>
+				<Type Decoration="10040DFF">_ST_FunctionBlockResults</Type>
+				<BitSize>56</BitSize>
+				<BitOffs>16</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">StateDWord</Name>
+				<Type>BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>72</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">ExecuteMoveVelocity</Name>
+				<Type>BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>80</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">MoveVelocity</Name>
+				<Type Decoration="1013B829">MC_MoveVelocity</Type>
+				<BitSize>6136</BitSize>
+				<BitOffs>88</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">MoveVelocityOut</Name>
+				<Type Decoration="10061373">ST_McOutputs</Type>
+				<BitSize>72</BitSize>
+				<BitOffs>6224</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Direction</Name>
+				<Type Decoration="30000390">MC_Direction</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>6296</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">ExecuteHalt</Name>
+				<Type>BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>6312</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Halt</Name>
+				<Type Decoration="101073B8">MC_Halt</Type>
+				<BitSize>5992</BitSize>
+				<BitOffs>6320</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">HaltOut</Name>
+				<Type Decoration="10061373">ST_McOutputs</Type>
+				<BitSize>72</BitSize>
+				<BitOffs>12312</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">ExecuteMoveAbsolute</Name>
+				<Type>BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>12384</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">MoveAbsolute</Name>
+				<Type Decoration="1013803E">MC_MoveAbsolute</Type>
+				<BitSize>6184</BitSize>
+				<BitOffs>12392</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">MoveAbsoluteOut</Name>
+				<Type Decoration="10061373">ST_McOutputs</Type>
+				<BitSize>72</BitSize>
+				<BitOffs>18576</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">ExecuteMoveRelative</Name>
+				<Type>BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>18648</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">MoveRelative</Name>
+				<Type Decoration="10138030">MC_MoveRelative</Type>
+				<BitSize>6184</BitSize>
+				<BitOffs>18656</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">MoveRelativeOut</Name>
+				<Type Decoration="10061373">ST_McOutputs</Type>
+				<BitSize>72</BitSize>
+				<BitOffs>24840</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">JogMove</Name>
+				<Type Decoration="1032983B">_FB_MoveUniversalGeneric</Type>
+				<BitSize>5456</BitSize>
+				<BitOffs>24912</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">LastJogMoveResult</Name>
+				<Type Decoration="10040DFF">_ST_FunctionBlockResults</Type>
+				<BitSize>56</BitSize>
+				<BitOffs>30368</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">ExecuteJogMove</Name>
+				<Type>BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>30424</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">StartType</Name>
+				<Type Decoration="3000064C">_E_TcNC_StartPosType</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>30432</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">JogMoveOut</Name>
+				<Type Decoration="10061373">ST_McOutputs</Type>
+				<BitSize>72</BitSize>
+				<BitOffs>30448</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">JogEnd</Name>
+				<Type>BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>30520</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">TargetPosition</Name>
+				<Type>LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>30528</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">modulo</Name>
+				<Type>LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>30592</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">JogForward</Name>
+				<Type>BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>30656</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">JogBackwards</Name>
+				<Type>BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>30664</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Mode</Name>
+				<Type Decoration="300002A9">E_JogMode</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>30672</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Position</Name>
+				<Type>LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>30688</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Velocity</Name>
+				<Type>LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>30752</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Acceleration</Name>
+				<Type>LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>30816</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Deceleration</Name>
+				<Type>LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>30880</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Jerk</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[BufferMode		:	MC_BufferMode;]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>30944</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Done</Name>
+				<Type>BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>31008</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Busy</Name>
+				<Type>BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>31016</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Active</Name>
+				<Type>BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>31024</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">CommandAborted</Name>
+				<Type>BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>31032</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Error</Name>
+				<Type>BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>31040</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">ErrorID</Name>
+				<Type>UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>31048</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="InOut" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Axis</Name>
+				<Type Decoration="1006BE2E" Pointer="1">_FBAXIS_REF</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>31080</BitOffs>
+			</SubItem>
+			<FbInfo>
+				<CodeIndex>329</CodeIndex>
+				<InitIndex>330</InitIndex>
+				<ActionInfo>
+					<Name>ActCheckJogEnd</Name>
+					<CodeIndex>331</CodeIndex>
+				</ActionInfo>
+				<ActionInfo>
+					<Name>ActJogMove</Name>
+					<CodeIndex>332</CodeIndex>
+				</ActionInfo>
+			</FbInfo>
 		</DataType>
 		<DataType>
 			<Name Decoration="300005CD" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">E_SuperpositionMode</Name>
@@ -7367,6 +8560,137 @@
 			<FbInfo>
 				<CodeIndex>504</CodeIndex>
 				<InitIndex>505</InitIndex>
+			</FbInfo>
+		</DataType>
+		<DataType>
+			<Name Decoration="100EAABA" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">MC_Power</Name>
+			<BitSize>464</BitSize>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">EnableTimeout</Name>
+				<Type Decoration="10060D24">TON</Type>
+				<BitSize>120</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">EnableOffOnDelay</Name>
+				<Type Decoration="10050B9B">TP</Type>
+				<Comment>
+					<![CDATA[iOverride: DINT;]]>
+				</Comment>
+				<BitSize>112</BitSize>
+				<BitOffs>120</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">iOverride</Name>
+				<Type>DWORD</Type>
+				<Comment>
+					<![CDATA[20110511 KSt type adaption for TC3]]>
+				</Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>232</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Enable</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[B]]>
+				</Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>264</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Enable_Positive</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[E]]>
+				</Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>272</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Enable_Negative</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[E]]>
+				</Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>280</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Override</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[in percent - Beckhoff proprietary input]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>288</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">BufferMode</Name>
+				<Type Decoration="300003CE">MC_BufferMode</Type>
+				<Comment>
+					<![CDATA[V]]>
+				</Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>352</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Status</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[B]]>
+				</Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>368</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Busy</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[V]]>
+				</Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>376</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Active</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[V]]>
+				</Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>384</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Error</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[B]]>
+				</Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>392</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">ErrorID</Name>
+				<Type>UDINT</Type>
+				<Comment>
+					<![CDATA[E]]>
+				</Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>400</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="InOut" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcMC2.lib">Axis</Name>
+				<Type Decoration="1006BE2E" Pointer="1">_FBAXIS_REF</Type>
+				<Comment>
+					<![CDATA[B]]>
+				</Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>432</BitOffs>
+			</SubItem>
+			<FbInfo>
+				<CodeIndex>354</CodeIndex>
+				<InitIndex>355</InitIndex>
 			</FbInfo>
 		</DataType>
 		<DataType>
@@ -8444,6 +9768,296 @@
 				<Text>AMSLOGGER_STOP</Text>
 				<Enum>2</Enum>
 			</EnumInfo>
+		</DataType>
+		<DataType>
+			<Name Decoration="10217356" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">FB_BasicPID</Name>
+			<BitSize>1696</BitSize>
+			<SubItem>
+				<Name Constant="1" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">nERR_NOERROR</Name>
+				<Type>UINT</Type>
+				<Comment>
+					<![CDATA[no error]]>
+				</Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name Constant="1" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">nERR_INVALIDPARAM</Name>
+				<Type>UINT</Type>
+				<Comment>
+					<![CDATA[invalid parameter]]>
+				</Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>16</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name Constant="1" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">nERR_INVALIDCYCLETIME</Name>
+				<Type>UINT</Type>
+				<Comment>
+					<![CDATA[invalid cycle time]]>
+				</Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>32</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">fE</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[error input]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>48</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">fE_1</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[error input z^(-1)]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>112</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">fY</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[control output]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>176</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">fY_1</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[control output  z^(-1)]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>240</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">fYP</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[P-part]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>304</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">fYI</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[I-part]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>368</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">fYI_1</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[I-part  z^(-1)]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>432</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">fYD</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[D-T1-part]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>496</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">fYD_1</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[D-T1-part  z^(-1)]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>560</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">bInit</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[initialization flag for first cycle]]>
+				</Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>624</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">bIsIPart</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[I-part active ?]]>
+				</Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>632</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">bIsDPart</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[D-part active ?]]>
+				</Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>640</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">fDi</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[internal I param]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>648</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">fDd</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[internal D param]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>712</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">fCd</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[internal D param]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>776</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">fCtrlCycleTimeOld</Name>
+				<Type>LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>840</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">fKpOld</Name>
+				<Type>LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>904</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">fTnOld</Name>
+				<Type>LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>968</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">fTvOld</Name>
+				<Type>LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>1032</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">fTdOld</Name>
+				<Type>LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>1096</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">fSetpointValue</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[setpoint value]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>1160</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">fActualValue</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[actual value]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>1224</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">bReset</Name>
+				<Type>BOOL</Type>
+				<Comment>
+					<![CDATA[controller values]]>
+				</Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>1288</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">fCtrlCycleTime</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[controller cycle time in seconds [s]]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>1296</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">fKp</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[proportional gain Kp	(P)]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>1360</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">fTn</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[integral gain Tn (I) [s]]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>1424</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">fTv</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[derivative gain Tv (D-T1) [s]]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>1488</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Input" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">fTd</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[derivative damping time Td (D-T1) [s]]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>1552</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">fCtrlOutput</Name>
+				<Type>LREAL</Type>
+				<Comment>
+					<![CDATA[controller output command]]>
+				</Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>1616</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name FbParameter="Output" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">nErrorStatus</Name>
+				<Type>UINT</Type>
+				<Comment>
+					<![CDATA[controller error output (0: no error; >0:error)]]>
+				</Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>1680</BitOffs>
+			</SubItem>
+			<FbInfo>
+				<CodeIndex>600</CodeIndex>
+				<InitIndex>601</InitIndex>
+			</FbInfo>
 		</DataType>
 		<DataType>
 			<Name Decoration="300004A4" IsDefinedInLibrary="1" Library="E:\TWINCAT\PLC\LIB\TcUtilities.lib">E_FileRBufferCmd</Name>
@@ -10037,9 +11651,9 @@
 	</DataTypes>
 	<Functions>
 		<Function>
-			<Name Decoration="10030975" Crc32="1517509758" LastChange="2016-06-30T17:03:11">ProblemRecord</Name>
+			<Name Decoration="10030975" Crc32="1517509758" LastChange="2016-07-01T14:24:28">ProblemRecord</Name>
 			<FunInfo>
-				<CodeIndex>985</CodeIndex>
+				<CodeIndex>995</CodeIndex>
 				<ReturnValue>
 					<Name>ProblemRecord</Name>
 					<Type>BOOL</Type>
@@ -10054,6 +11668,74 @@
 					<Name FunParameter="Input">code</Name>
 					<Type>INT</Type>
 					<BitSize>16</BitSize>
+				</FunParameter>
+			</FunInfo>
+		</Function>
+		<Function>
+			<Name Decoration="100AD9A2" Crc32="0826526165" LastChange="2016-07-01T14:24:28">RunShow</Name>
+			<FunInfo>
+				<CodeIndex>524</CodeIndex>
+				<ReturnValue>
+					<Name>RunShow</Name>
+					<Type>BOOL</Type>
+					<BitSize>8</BitSize>
+				</ReturnValue>
+				<FunParameter>
+					<Name>i</Name>
+					<Type>INT</Type>
+					<BitSize>16</BitSize>
+				</FunParameter>
+				<FunParameter>
+					<Name>RunRollNE1</Name>
+					<Type Decoration="1005C9A9">RunRollNE</Type>
+					<BitSize>1784</BitSize>
+				</FunParameter>
+				<FunParameter>
+					<Name>RunRollNR1</Name>
+					<Type Decoration="1005C9BA">RunRollNR</Type>
+					<BitSize>1784</BitSize>
+				</FunParameter>
+				<FunParameter>
+					<Name>RunPitchNE1</Name>
+					<Type Decoration="1005C9BB">RunPitchNE</Type>
+					<BitSize>1784</BitSize>
+				</FunParameter>
+				<FunParameter>
+					<Name>RunPitchNR1</Name>
+					<Type Decoration="1005C9BC">RunPitchNR</Type>
+					<BitSize>1784</BitSize>
+				</FunParameter>
+				<FunParameter>
+					<Name FunParameter="Input">roll_ne_pos_curve</Name>
+					<Type Decoration="20012A2C">ARRAY [0..10500] OF REAL</Type>
+					<Comment>
+						<![CDATA[2ms一个定时，总时长21s]]>
+					</Comment>
+					<BitSize>336032</BitSize>
+				</FunParameter>
+				<FunParameter>
+					<Name FunParameter="Input">roll_nr_pos_curve</Name>
+					<Type Decoration="20012A2C">ARRAY [0..10500] OF REAL</Type>
+					<Comment>
+						<![CDATA[2ms一个定时，总时长21s]]>
+					</Comment>
+					<BitSize>336032</BitSize>
+				</FunParameter>
+				<FunParameter>
+					<Name FunParameter="Input">pitch_ne_pos_curve</Name>
+					<Type Decoration="20012A2C">ARRAY [0..10500] OF REAL</Type>
+					<Comment>
+						<![CDATA[2ms一个定时，总时长21s]]>
+					</Comment>
+					<BitSize>336032</BitSize>
+				</FunParameter>
+				<FunParameter>
+					<Name FunParameter="Input">pitch_nr_pos_curve</Name>
+					<Type Decoration="20012A2C">ARRAY [0..10500] OF REAL</Type>
+					<Comment>
+						<![CDATA[2ms一个定时，总时长21s]]>
+					</Comment>
+					<BitSize>336032</BitSize>
 				</FunParameter>
 			</FunInfo>
 		</Function>
@@ -17603,7 +19285,7 @@
 	</Functions>
 	<Programs>
 		<Program>
-			<Name Decoration="1002504F" Crc32="0430665549" LastChange="2016-06-30T17:03:11">EmergencyStop</Name>
+			<Name Decoration="10036A40" Crc32="2332118430" LastChange="2016-07-01T14:24:28">EmergencyStop</Name>
 			<PrgInfo>
 				<CodeIndex>512</CodeIndex>
 				<Symbol>
@@ -17612,16 +19294,19 @@
 				<Symbol>
 					<Name>EmergencyStop.Brake_Motor1</Name>
 				</Symbol>
+				<Symbol>
+					<Name>EmergencyStop.HPU_Control1</Name>
+				</Symbol>
 			</PrgInfo>
 		</Program>
 		<Program>
-			<Name Decoration="10000000" Crc32="2237347156" LastChange="2016-06-30T17:03:11">InterfaceToLabview</Name>
+			<Name Decoration="10000000" Crc32="2237347156" LastChange="2016-07-01T14:24:28">InterfaceToLabview</Name>
 			<PrgInfo>
 				<CodeIndex>521</CodeIndex>
 			</PrgInfo>
 		</Program>
 		<Program>
-			<Name Decoration="100B777E" Crc32="0903335606" LastChange="2016-06-30T17:03:11">MAIN</Name>
+			<Name Decoration="100CC483" Crc32="0852569262" LastChange="2016-07-01T14:24:28">MAIN</Name>
 			<PrgInfo>
 				<CodeIndex>523</CodeIndex>
 				<Symbol>
@@ -17655,26 +19340,32 @@
 					<Name>MAIN.ExecButtonCommander1</Name>
 				</Symbol>
 				<Symbol>
-					<Name>MAIN.R_TRIG1</Name>
+					<Name>MAIN.HPU_Control1</Name>
+				</Symbol>
+				<Symbol>
+					<Name>MAIN.HPU_Control2</Name>
 				</Symbol>
 			</PrgInfo>
 		</Program>
 		<Program>
-			<Name Decoration="1002052A" Crc32="1181619682" LastChange="2016-06-30T17:03:11">ProblemMonitor</Name>
+			<Name Decoration="10055B24" Crc32="4175564109" LastChange="2016-07-01T14:24:28">ProblemMonitor</Name>
 			<PrgInfo>
-				<CodeIndex>984</CodeIndex>
+				<CodeIndex>994</CodeIndex>
 				<Symbol>
 					<Name>ProblemMonitor.normalRun</Name>
 				</Symbol>
 				<Symbol>
 					<Name>ProblemMonitor.i</Name>
 				</Symbol>
-			</PrgInfo>
-		</Program>
-		<Program>
-			<Name Decoration="10000000" Crc32="1155816276" LastChange="2016-06-30T17:03:11">Runshow</Name>
-			<PrgInfo>
-				<CodeIndex>524</CodeIndex>
+				<Symbol>
+					<Name>ProblemMonitor.HPU_Cab_FUSE_CHECK1</Name>
+				</Symbol>
+				<Symbol>
+					<Name>ProblemMonitor.HPUOverheatingMonitor1</Name>
+				</Symbol>
+				<Symbol>
+					<Name>ProblemMonitor.MotorMonitor1</Name>
+				</Symbol>
 			</PrgInfo>
 		</Program>
 	</Programs>
@@ -17687,11 +19378,18 @@
 			<BitSize>8</BitSize>
 		</Symbol>
 		<Symbol>
-			<Name TaskPrio="9">EmergencyStop.Brake_Motor1</Name>
+			<Name TaskPrio="4">EmergencyStop.Brake_Motor1</Name>
 			<Type Decoration="100136F7">Brake_Motor</Type>
 			<IGroup>16448</IGroup>
 			<IOffset>1218</IOffset>
 			<BitSize>16</BitSize>
+		</Symbol>
+		<Symbol>
+			<Name TaskPrio="4">EmergencyStop.HPU_Control1</Name>
+			<Type Decoration="100B02DD">HPU_Control</Type>
+			<IGroup>16448</IGroup>
+			<IOffset>3145</IOffset>
+			<BitSize>456</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name TaskPrio="1">MAIN.TON1</Name>
@@ -17751,24 +19449,66 @@
 		</Symbol>
 		<Symbol>
 			<Name TaskPrio="1">MAIN.ExecGHCommander1</Name>
-			<Type Decoration="10031D00">ExecGHCommander</Type>
+			<Type Decoration="1002E9AA">ExecGHCommander</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>3137</IOffset>
-			<BitSize>79968</BitSize>
+			<IOffset>3202</IOffset>
+			<BitSize>89800</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name TaskPrio="1">MAIN.ExecButtonCommander1</Name>
-			<Type Decoration="10030AED">ExecButtonCommander</Type>
+			<Type Decoration="1008708F">ExecButtonCommander</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>13133</IOffset>
-			<BitSize>96</BitSize>
+			<IOffset>14427</IOffset>
+			<BitSize>97024</BitSize>
 		</Symbol>
 		<Symbol>
-			<Name>MAIN.R_TRIG1</Name>
-			<Type Decoration="1003051C">R_TRIG</Type>
+			<Name TaskPrio="1">MAIN.HPU_Control1</Name>
+			<Type Decoration="100B02DD">HPU_Control</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>13145</IOffset>
-			<BitSize>24</BitSize>
+			<IOffset>26555</IOffset>
+			<BitSize>456</BitSize>
+		</Symbol>
+		<Symbol>
+			<Name TaskPrio="1">MAIN.HPU_Control2</Name>
+			<Type Decoration="100B02DD">HPU_Control</Type>
+			<IGroup>16448</IGroup>
+			<IOffset>26612</IOffset>
+			<BitSize>456</BitSize>
+		</Symbol>
+		<Symbol>
+			<Name>ProblemMonitor.normalRun</Name>
+			<Type>BOOL</Type>
+			<IGroup>16448</IGroup>
+			<IOffset>26669</IOffset>
+			<BitSize>8</BitSize>
+		</Symbol>
+		<Symbol>
+			<Name TaskPrio="4">ProblemMonitor.i</Name>
+			<Type>INT</Type>
+			<IGroup>16448</IGroup>
+			<IOffset>26670</IOffset>
+			<BitSize>16</BitSize>
+		</Symbol>
+		<Symbol>
+			<Name TaskPrio="4">ProblemMonitor.HPU_Cab_FUSE_CHECK1</Name>
+			<Type Decoration="1001022F">HPU_Cab_FUSE_CHECK</Type>
+			<IGroup>16448</IGroup>
+			<IOffset>26672</IOffset>
+			<BitSize>8</BitSize>
+		</Symbol>
+		<Symbol>
+			<Name TaskPrio="4">ProblemMonitor.HPUOverheatingMonitor1</Name>
+			<Type Decoration="1001022F">HPUOverheatingMonitor</Type>
+			<IGroup>16448</IGroup>
+			<IOffset>26673</IOffset>
+			<BitSize>8</BitSize>
+		</Symbol>
+		<Symbol>
+			<Name TaskPrio="4">ProblemMonitor.MotorMonitor1</Name>
+			<Type Decoration="1001022F">MotorMonitor</Type>
+			<IGroup>16448</IGroup>
+			<IOffset>26674</IOffset>
+			<BitSize>8</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name Constant="1" IsDefinedInLibrary="1">.AMSPORT_LOGGER</Name>
@@ -18869,7 +20609,7 @@
 				<![CDATA[256 + 4 inkl. \0]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2791</IOffset>
+			<IOffset>2799</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
@@ -18879,7 +20619,7 @@
 				<![CDATA[128 + 4 inkl. \0]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2795</IOffset>
+			<IOffset>2803</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
@@ -18889,35 +20629,35 @@
 				<![CDATA[Physical adapter address bytes[0..7]]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2799</IOffset>
+			<IOffset>2807</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name Constant="1" IsDefinedInLibrary="1">.SYSTEMSERVICE_IPHELPERAPI</Name>
 			<Type>UDINT</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>2803</IOffset>
+			<IOffset>2811</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name Constant="1" IsDefinedInLibrary="1">.SYSTEMSERVICE_IPHOSTNAME</Name>
 			<Type>UDINT</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>2807</IOffset>
+			<IOffset>2815</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name Constant="1" IsDefinedInLibrary="1">.IPHELPERAPI_ADAPTERSINFO</Name>
 			<Type>UDINT</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>2811</IOffset>
+			<IOffset>2819</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name Constant="1" IsDefinedInLibrary="1">.IPHELPERAPI_IPADDRBYHOSTNAME</Name>
 			<Type>UDINT</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>2815</IOffset>
+			<IOffset>2823</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
@@ -18927,42 +20667,42 @@
 				<![CDATA[Max. number of local adapters]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2819</IOffset>
+			<IOffset>2827</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name Constant="1" IsDefinedInLibrary="1">.SYSTEMSERVICE_ADDREMOTE</Name>
 			<Type>UDINT</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>2823</IOffset>
+			<IOffset>2831</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name Constant="1" IsDefinedInLibrary="1">.SYSTEMSERVICE_DELREMOTE</Name>
 			<Type>UDINT</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>2827</IOffset>
+			<IOffset>2835</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name Constant="1" IsDefinedInLibrary="1">.SYSTEMSERVICE_ENUMREMOTE</Name>
 			<Type>UDINT</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>2831</IOffset>
+			<IOffset>2839</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name Constant="1" IsDefinedInLibrary="1">.MAX_REMOTE_PCS</Name>
 			<Type>INT</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>2835</IOffset>
+			<IOffset>2843</IOffset>
 			<BitSize>16</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name Constant="1" IsDefinedInLibrary="1">.ROUTE_FLAG_TEMPORARY</Name>
 			<Type>DWORD</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>2837</IOffset>
+			<IOffset>2845</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
@@ -18972,14 +20712,14 @@
 				<![CDATA[hostname instead OF IP address]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2841</IOffset>
+			<IOffset>2849</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name Constant="1" IsDefinedInLibrary="1">.ROUTE_FLAG_NOOVERRIDE</Name>
 			<Type>DWORD</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>2845</IOffset>
+			<IOffset>2853</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
@@ -18989,7 +20729,7 @@
 				<![CDATA[max. TcRouter length]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2849</IOffset>
+			<IOffset>2857</IOffset>
 			<BitSize>8</BitSize>
 		</Symbol>
 		<Symbol>
@@ -18999,7 +20739,7 @@
 				<![CDATA[max. TcRouter length]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2850</IOffset>
+			<IOffset>2858</IOffset>
 			<BitSize>8</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19009,7 +20749,7 @@
 				<![CDATA[eRouteTransport_None]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2851</IOffset>
+			<IOffset>2859</IOffset>
 			<BitSize>8</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19019,14 +20759,14 @@
 				<![CDATA[eRouteTransport_SOAP]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2852</IOffset>
+			<IOffset>2860</IOffset>
 			<BitSize>8</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name Constant="1" IsDefinedInLibrary="1">.SYSTEMSERVICE_FFILEFIND</Name>
 			<Type>UDINT</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>2853</IOffset>
+			<IOffset>2861</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19036,21 +20776,21 @@
 				<![CDATA[Ams logger constants]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2857</IOffset>
+			<IOffset>2865</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name Constant="1" IsDefinedInLibrary="1">.AMSLOGGER_IGR_GENERAL</Name>
 			<Type>UDINT</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>2861</IOffset>
+			<IOffset>2869</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name Constant="1" IsDefinedInLibrary="1">.AMSLOGGER_IOF_MODE</Name>
 			<Type>UDINT</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>2865</IOffset>
+			<IOffset>2873</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19060,7 +20800,7 @@
 				<![CDATA[Format string constants]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2869</IOffset>
+			<IOffset>2877</IOffset>
 			<BitSize>16</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19070,7 +20810,7 @@
 				<![CDATA[max number of format arguments in FB_FormatString]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2871</IOffset>
+			<IOffset>2879</IOffset>
 			<BitSize>16</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19080,7 +20820,7 @@
 				<![CDATA[the value is #NAN or -#NAN]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2873</IOffset>
+			<IOffset>2881</IOffset>
 			<BitSize>16</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19090,7 +20830,7 @@
 				<![CDATA[the value is #INF or -#INF]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2875</IOffset>
+			<IOffset>2883</IOffset>
 			<BitSize>16</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19100,7 +20840,7 @@
 				<![CDATA[Note: double precision floats have max. 15 significant digits]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2877</IOffset>
+			<IOffset>2885</IOffset>
 			<BitSize>16</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19110,7 +20850,7 @@
 				<![CDATA[1e-307]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2879</IOffset>
+			<IOffset>2887</IOffset>
 			<BitSize>16</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19121,7 +20861,7 @@
 	Error code  == argument number (1..10)  + error code]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2881</IOffset>
+			<IOffset>2889</IOffset>
 			<BitSize>16</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19131,7 +20871,7 @@
 				<![CDATA[No error]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2883</IOffset>
+			<IOffset>2891</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19141,7 +20881,7 @@
 				<![CDATA[Percent sign (%) at invalid position]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2887</IOffset>
+			<IOffset>2895</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19151,7 +20891,7 @@
 				<![CDATA[Asterisk parameter at invalid position]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2891</IOffset>
+			<IOffset>2899</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19161,7 +20901,7 @@
 				<![CDATA[Invalid width field value]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2895</IOffset>
+			<IOffset>2903</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19171,7 +20911,7 @@
 				<![CDATA[invalid precision field value]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2899</IOffset>
+			<IOffset>2907</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19181,7 +20921,7 @@
 				<![CDATA[one of the flags at invalid position]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2903</IOffset>
+			<IOffset>2911</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19191,7 +20931,7 @@
 				<![CDATA[the width or precision field  value at invalid position]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2907</IOffset>
+			<IOffset>2915</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19201,7 +20941,7 @@
 				<![CDATA[dot "." sign of precision field at invalid  position]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2911</IOffset>
+			<IOffset>2919</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19211,7 +20951,7 @@
 				<![CDATA[invalid (unsupported) type field value]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2915</IOffset>
+			<IOffset>2923</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19221,7 +20961,7 @@
 				<![CDATA[Different type field and argument parameter]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2919</IOffset>
+			<IOffset>2927</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19231,7 +20971,7 @@
 				<![CDATA[Invalid format string parameters]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2923</IOffset>
+			<IOffset>2931</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19241,7 +20981,7 @@
 				<![CDATA[To much arguments in format string]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2927</IOffset>
+			<IOffset>2935</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19251,7 +20991,7 @@
 				<![CDATA[Destination string buffer overflow (formatted string is to long )]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2931</IOffset>
+			<IOffset>2939</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19261,21 +21001,21 @@
 				<![CDATA[number of past days since year zero until 1 January 1601]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2935</IOffset>
+			<IOffset>2943</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name Constant="1" IsDefinedInLibrary="1">.MIN_SBCS_TABLE</Name>
 			<Type>INT</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>2939</IOffset>
+			<IOffset>2947</IOffset>
 			<BitSize>16</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name Constant="1" IsDefinedInLibrary="1">.MAX_SBCS_TABLE</Name>
 			<Type>INT</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>2941</IOffset>
+			<IOffset>2949</IOffset>
 			<BitSize>16</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19285,7 +21025,7 @@
 				<![CDATA[Number of seconds per day]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2943</IOffset>
+			<IOffset>2951</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19295,7 +21035,7 @@
 				<![CDATA[Number of seconds per week]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2947</IOffset>
+			<IOffset>2955</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19305,7 +21045,7 @@
 				<![CDATA[Hash table chain size]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2951</IOffset>
+			<IOffset>2959</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19315,7 +21055,7 @@
 				<![CDATA[Disabled (no debug oputput)]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2961</IOffset>
+			<IOffset>2969</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19325,7 +21065,7 @@
 				<![CDATA[Enabled, TwinCAT System Manager Log]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2965</IOffset>
+			<IOffset>2973</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19335,7 +21075,7 @@
 				<![CDATA[Enabled, text file]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2969</IOffset>
+			<IOffset>2977</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19345,7 +21085,7 @@
 				<![CDATA[reserved]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2973</IOffset>
+			<IOffset>2981</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19355,7 +21095,7 @@
 				<![CDATA[double-quote (") => used to enclose special characters like line breaks, double-quotes, commas...]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2977</IOffset>
+			<IOffset>2985</IOffset>
 			<BitSize>8</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19365,7 +21105,7 @@
 				<![CDATA[cariage return => record separator (first character)]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2978</IOffset>
+			<IOffset>2986</IOffset>
 			<BitSize>8</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19375,21 +21115,21 @@
 				<![CDATA[line feed => record separator (second character)]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>2979</IOffset>
+			<IOffset>2987</IOffset>
 			<BitSize>8</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name Constant="1" IsDefinedInLibrary="1">.EMPTY_GUID_STRING</Name>
 			<Type Decoration="40000025">STRING(36)</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>3061</IOffset>
+			<IOffset>3069</IOffset>
 			<BitSize>296</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name Constant="1" IsDefinedInLibrary="1">.EMPTY_GUID_REGSTRING</Name>
 			<Type Decoration="40000027">STRING(38)</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>3098</IOffset>
+			<IOffset>3106</IOffset>
 			<BitSize>312</BitSize>
 		</Symbol>
 		<Symbol>
@@ -19465,7 +21205,7 @@
 			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name Static="Output" TaskPrio="1">.Ctrl_Cab_KA15_2_EL2004</Name>
+			<Name Static="Output" TaskPrio="5">.Ctrl_Cab_KA15_2_EL2004</Name>
 			<Type>BYTE</Type>
 			<Comment>
 				<![CDATA[0：hpu_is_on_out
@@ -19590,7 +21330,7 @@
 			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name Static="Output" TaskPrio="1">.Ctrl_Cab_KA19_EL4132_2</Name>
+			<Name Static="Output">.Ctrl_Cab_KA19_EL4132_2</Name>
 			<Type>INT</Type>
 			<Comment>
 				<![CDATA[表演计时输出]]>
@@ -19608,7 +21348,7 @@
 			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name Static="Output" TaskPrio="9">.GH_restart_emergency</Name>
+			<Name Static="Output" TaskPrio="1">.GH_restart_emergency</Name>
 			<Type>BOOL</Type>
 			<IGroup>61489</IGroup>
 			<IOffset VarConfig="Changeable">568</IOffset>
@@ -19623,7 +21363,7 @@
 			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name TaskPrio="9">.state</Name>
+			<Name TaskPrio="5">.state</Name>
 			<Type Decoration="3000044C">OPERATOR_STATE</Type>
 			<Comment>
 				<![CDATA[HPU_Cabinet]]>
@@ -19633,7 +21373,7 @@
 			<BitSize>16</BitSize>
 		</Symbol>
 		<Symbol>
-			<Name Static="Input" TaskPrio="1">.HPU_Cab_KA2_EL1004</Name>
+			<Name Static="Input" TaskPrio="5">.HPU_Cab_KA2_EL1004</Name>
 			<Type>BYTE</Type>
 			<Comment>
 				<![CDATA[0：冷却泵电路开关状态K5，常开
@@ -19657,7 +21397,7 @@
 			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name Static="Input" TaskPrio="1">.HPU_Cab_KA3_EL1004</Name>
+			<Name Static="Input" TaskPrio="5">.HPU_Cab_KA3_EL1004</Name>
 			<Type>BYTE</Type>
 			<Comment>
 				<![CDATA[0：主泵电机启动开关Q1M，常开
@@ -19681,7 +21421,7 @@
 			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name Static="Input">.HPU_Cab_KA4_EL1004</Name>
+			<Name Static="Input" TaskPrio="4">.HPU_Cab_KA4_EL1004</Name>
 			<Type>BYTE</Type>
 			<Comment>
 				<![CDATA[0：主泵电机浪涌抑制状态
@@ -19705,7 +21445,7 @@
 			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name Static="Input" TaskPrio="1">.HPU_Cab_KA5_EL1004</Name>
+			<Name Static="Input" TaskPrio="5">.HPU_Cab_KA5_EL1004</Name>
 			<Type>BYTE</Type>
 			<Comment>
 				<![CDATA[0：HPU柜供电保险丝状态F4，常开
@@ -19729,13 +21469,13 @@
 			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name Static="Output">.HPU_Cab_KA7_EL2034</Name>
+			<Name Static="Output" TaskPrio="5">.HPU_Cab_KA7_EL2034</Name>
 			<Type>BYTE</Type>
 			<Comment>
 				<![CDATA[0：主泵电机启动线圈K3
 	  1：冷却泵启动线圈K5
-	  2：悬空
-	  3：悬空]]>
+	  2：主泵Q2M线圈，总体所新增
+	  3：主泵Q3M线圈，总体所新增]]>
 			</Comment>
 			<IGroup>61488</IGroup>
 			<IOffset VarConfig="Changeable">11</IOffset>
@@ -19753,7 +21493,7 @@
 			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name Static="Input">.HPU_BOX_KA2_EL1004</Name>
+			<Name Static="Input" TaskPrio="4">.HPU_BOX_KA2_EL1004</Name>
 			<Type>BYTE</Type>
 			<Comment>
 				<![CDATA[0：油温继电器状态
@@ -19777,7 +21517,7 @@
 			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name Static="Input">.HPU_BOX_KA3_EL1382</Name>
+			<Name Static="Input" TaskPrio="4">.HPU_BOX_KA3_EL1382</Name>
 			<Type>BYTE</Type>
 			<Comment>
 				<![CDATA[0：主泵温度继电器状态
@@ -19796,7 +21536,7 @@
 			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name Static="Input" TaskPrio="1">.HPU_BOX_KA4_EL3052_1</Name>
+			<Name Static="Input" TaskPrio="5">.HPU_BOX_KA4_EL3052_1</Name>
 			<Type>INT</Type>
 			<Comment>
 				<![CDATA[油温]]>
@@ -19904,7 +21644,7 @@
 			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name Static="Output">.HPU_BOX_KA8_EL2034</Name>
+			<Name Static="Output" TaskPrio="5">.HPU_BOX_KA8_EL2034</Name>
 			<Type>BYTE</Type>
 			<Comment>
 				<![CDATA[0：旁通阀关闭
@@ -19998,7 +21738,17 @@
 			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name Static="Input" TaskPrio="1">.Oper_Box_KA2_EL1808</Name>
+			<Name TaskPrio="5">.HPU_Status</Name>
+			<Type>BOOL</Type>
+			<Comment>
+				<![CDATA[true：油源正在运行，false：油源未运行]]>
+			</Comment>
+			<IGroup>16448</IGroup>
+			<IOffset>26675</IOffset>
+			<BitSize>8</BitSize>
+		</Symbol>
+		<Symbol>
+			<Name Static="Input" TaskPrio="5">.Oper_Box_KA2_EL1808</Name>
 			<Type>BYTE</Type>
 			<Comment>
 				<![CDATA[0：钥匙处于Test模式，常0
@@ -20062,7 +21812,7 @@
 			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name TaskPrio="1">.workmode</Name>
+			<Name TaskPrio="5">.workmode</Name>
 			<Type Decoration="300002C7">WORK_MODE</Type>
 			<Comment>
 				<![CDATA[ROLL]]>
@@ -20240,7 +21990,7 @@
 			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name Static="Output">.Roll_KA12_EL4132_1</Name>
+			<Name Static="Output" TaskPrio="1">.Roll_KA12_EL4132_1</Name>
 			<Type>INT</Type>
 			<Comment>
 				<![CDATA[roll轴ne缸伺服阀command输出]]>
@@ -20258,7 +22008,7 @@
 			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name Static="Output">.Roll_KA12_EL4132_2</Name>
+			<Name Static="Output" TaskPrio="1">.Roll_KA12_EL4132_2</Name>
 			<Type>INT</Type>
 			<Comment>
 				<![CDATA[roll轴nr缸伺服阀command输出]]>
@@ -20291,7 +22041,7 @@
 			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name Static="Input">.Roll_NE_Sensor_Position</Name>
+			<Name Static="Input" TaskPrio="1">.Roll_NE_Sensor_Position</Name>
 			<Type>UDINT</Type>
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">41</IOffset>
@@ -20339,7 +22089,7 @@
 			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name Static="Input">.Roll_NR_Sensor_Position</Name>
+			<Name Static="Input" TaskPrio="1">.Roll_NR_Sensor_Position</Name>
 			<Type>UDINT</Type>
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">51</IOffset>
@@ -20540,7 +22290,7 @@
 			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name Static="Output">.Pitch_KA12_EL4132_1</Name>
+			<Name Static="Output" TaskPrio="1">.Pitch_KA12_EL4132_1</Name>
 			<Type>INT</Type>
 			<Comment>
 				<![CDATA[pitch轴ne缸伺服阀command输出]]>
@@ -20558,7 +22308,7 @@
 			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name Static="Output">.Pitch_KA12_EL4132_2</Name>
+			<Name Static="Output" TaskPrio="1">.Pitch_KA12_EL4132_2</Name>
 			<Type>INT</Type>
 			<Comment>
 				<![CDATA[pitch轴nr缸伺服阀command输出]]>
@@ -20591,7 +22341,7 @@
 			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name Static="Input">.Pitch_NE_Sensor_Position</Name>
+			<Name Static="Input" TaskPrio="1">.Pitch_NE_Sensor_Position</Name>
 			<Type>UDINT</Type>
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">78</IOffset>
@@ -20639,7 +22389,7 @@
 			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name Static="Input">.Pitch_NR_Sensor_Position</Name>
+			<Name Static="Input" TaskPrio="1">.Pitch_NR_Sensor_Position</Name>
 			<Type>UDINT</Type>
 			<IGroup>61472</IGroup>
 			<IOffset VarConfig="Changeable">88</IOffset>
@@ -20672,47 +22422,47 @@
 			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name>.roll_ne_ref_pos</Name>
+			<Name TaskPrio="1">.roll_ne_ref_pos</Name>
 			<Type Decoration="20012A2C">ARRAY [0..10500] OF REAL</Type>
 			<Comment>
 				<![CDATA[2ms一个定时，总时长21s]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>13151</IOffset>
+			<IOffset>26676</IOffset>
 			<BitSize>336032</BitSize>
 		</Symbol>
 		<Symbol>
-			<Name>.roll_nr_ref_pos</Name>
+			<Name TaskPrio="1">.roll_nr_ref_pos</Name>
 			<Type Decoration="20012A2C">ARRAY [0..10500] OF REAL</Type>
 			<Comment>
 				<![CDATA[2ms一个定时，总时长21s]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>55155</IOffset>
+			<IOffset>68680</IOffset>
 			<BitSize>336032</BitSize>
 		</Symbol>
 		<Symbol>
-			<Name>.pitch_ne_ref_pos</Name>
+			<Name TaskPrio="1">.pitch_ne_ref_pos</Name>
 			<Type Decoration="20012A2C">ARRAY [0..10500] OF REAL</Type>
 			<Comment>
 				<![CDATA[2ms一个定时，总时长21s]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>97159</IOffset>
+			<IOffset>110684</IOffset>
 			<BitSize>336032</BitSize>
 		</Symbol>
 		<Symbol>
-			<Name>.pitch_nr_ref_pos</Name>
+			<Name TaskPrio="1">.pitch_nr_ref_pos</Name>
 			<Type Decoration="20012A2C">ARRAY [0..10500] OF REAL</Type>
 			<Comment>
 				<![CDATA[2ms一个定时，总时长21s]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>139163</IOffset>
+			<IOffset>152688</IOffset>
 			<BitSize>336032</BitSize>
 		</Symbol>
 		<Symbol>
-			<Name Static="Input" TaskPrio="1">.Yaw1_KA3_EL1004</Name>
+			<Name Static="Input" TaskPrio="5">.Yaw1_KA3_EL1004</Name>
 			<Type>BYTE</Type>
 			<Comment>
 				<![CDATA[0：yaw1柜保险总开关F1状态，常开
@@ -20736,7 +22486,7 @@
 			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name Static="Input" TaskPrio="1">.Yaw1_KA4_EL1004</Name>
+			<Name Static="Input" TaskPrio="5">.Yaw1_KA4_EL1004</Name>
 			<Type>BYTE</Type>
 			<Comment>
 				<![CDATA[0：yaw1刹车电阻温度保护开关F5状态，当保护开关断开时，接收到1
@@ -20855,7 +22605,7 @@
 			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name Static="Output" TaskPrio="9">.Yaw1_KA9_EL2034</Name>
+			<Name Static="Output" TaskPrio="5">.Yaw1_KA9_EL2034</Name>
 			<Type>BYTE</Type>
 			<Comment>
 				<![CDATA[0：yaw1电机上电
@@ -20896,7 +22646,7 @@
 			<BitSize>160</BitSize>
 		</Symbol>
 		<Symbol>
-			<Name Static="Input" TaskPrio="1">.Yaw2_KA3_EL1004</Name>
+			<Name Static="Input" TaskPrio="5">.Yaw2_KA3_EL1004</Name>
 			<Type>BYTE</Type>
 			<Comment>
 				<![CDATA[0：yaw2柜保险总开关F1状态，常开
@@ -20920,7 +22670,7 @@
 			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name Static="Input" TaskPrio="1">.Yaw2_KA4_EL1004</Name>
+			<Name Static="Input" TaskPrio="5">.Yaw2_KA4_EL1004</Name>
 			<Type>BYTE</Type>
 			<Comment>
 				<![CDATA[0：yaw2刹车电阻温度保护开关F5状态，当保护开关断开时，接收到1
@@ -21039,7 +22789,7 @@
 			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name Static="Output" TaskPrio="9">.Yaw2_KA9_EL2034</Name>
+			<Name Static="Output" TaskPrio="5">.Yaw2_KA9_EL2034</Name>
 			<Type>BYTE</Type>
 			<Comment>
 				<![CDATA[0：yaw2电机上电
@@ -21086,7 +22836,7 @@
 				<![CDATA[Yaw轴当前旋转角度]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>181167</IOffset>
+			<IOffset>194692</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
@@ -21140,7 +22890,7 @@
 			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name Static="Input">.Man_Ope_Pan_KA4_EL3255_2</Name>
+			<Name Static="Input" TaskPrio="1">.Man_Ope_Pan_KA4_EL3255_2</Name>
 			<Type>INT</Type>
 			<Comment>
 				<![CDATA[pitch轴拨动]]>
@@ -21158,7 +22908,7 @@
 			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name Static="Input">.Man_Ope_Pan_KA4_EL3255_3</Name>
+			<Name Static="Input" TaskPrio="1">.Man_Ope_Pan_KA4_EL3255_3</Name>
 			<Type>INT</Type>
 			<Comment>
 				<![CDATA[yaw轴拨动]]>
@@ -21250,7 +23000,17 @@
 				<![CDATA[允许手操盒指令]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>181171</IOffset>
+			<IOffset>194696</IOffset>
+			<BitSize>8</BitSize>
+		</Symbol>
+		<Symbol>
+			<Name TaskPrio="5">.Emg_Global</Name>
+			<Type>BOOL</Type>
+			<Comment>
+				<![CDATA[总指令，包括安全模块急停和系统自动判断导致的急停]]>
+			</Comment>
+			<IGroup>16448</IGroup>
+			<IOffset>194697</IOffset>
 			<BitSize>8</BitSize>
 		</Symbol>
 		<Symbol>
@@ -21259,6 +23019,14 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1888</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard Out Vars TxPDO 1^Standard Out Var 4]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input" TaskPrio="1">.to_unloadposition</Name>
@@ -21266,6 +23034,14 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1889</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard Out Vars TxPDO 1^Standard Out Var 3]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input" TaskPrio="1">.to_showposition</Name>
@@ -21273,13 +23049,29 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1890</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard Out Vars TxPDO 1^Standard Out Var 1]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name Static="Input" TaskPrio="3">.start_runshow</Name>
+			<Name Static="Input" TaskPrio="1">.start_runshow</Name>
 			<Type>BOOL</Type>
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1891</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard Out Vars TxPDO 1^Standard Out Var 2]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input" TaskPrio="1">.allow_test</Name>
@@ -21287,6 +23079,14 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1893</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA5 (EL1904)^Module 1 (FSOES)^TxPDO^FSOE^allowtest]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Pitch_NE_Power_Supply1</Name>
@@ -21294,6 +23094,14 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1921</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^PITCH(EK1101)^Pitch_KA4 (EL1904)^Module 1 (FSOES)^TxPDO^FSOE^PitchNePowerSup1]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Pitch_NE_Power_Supply2</Name>
@@ -21301,6 +23109,14 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1922</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^PITCH(EK1101)^Pitch_KA4 (EL1904)^Module 1 (FSOES)^TxPDO^FSOE^PitchNePowerSup2]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Pitch_NE_Power_Supply3</Name>
@@ -21308,6 +23124,14 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1923</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^PITCH(EK1101)^Pitch_KA4 (EL1904)^Module 1 (FSOES)^TxPDO^FSOE^PitchNePowerSup3]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Pitch_NE_Prop_Power</Name>
@@ -21315,6 +23139,14 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1924</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^PITCH(EK1101)^Pitch_KA4 (EL1904)^Module 1 (FSOES)^TxPDO^FSOE^PitchNePropPower]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Pitch_NR_Power_Supply1</Name>
@@ -21322,6 +23154,14 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1925</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^PITCH(EK1101)^Pitch_KA5 (EL1904)^Module 1 (FSOES)^TxPDO^FSOE^PitchNrPowerSup1]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Pitch_NR_Power_Supply2</Name>
@@ -21329,6 +23169,14 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1926</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^PITCH(EK1101)^Pitch_KA5 (EL1904)^Module 1 (FSOES)^TxPDO^FSOE^PitchNrPowerSup2]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Pitch_NR_Power_Supply3</Name>
@@ -21336,6 +23184,14 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1927</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^PITCH(EK1101)^Pitch_KA5 (EL1904)^Module 1 (FSOES)^TxPDO^FSOE^PitchNrPowerSup3]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Pitch_NR_Prop_Power</Name>
@@ -21343,6 +23199,14 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1928</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^PITCH(EK1101)^Pitch_KA5 (EL1904)^Module 1 (FSOES)^TxPDO^FSOE^PitchNrPropPower]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Roll_NE_Power_Supplyply1</Name>
@@ -21350,6 +23214,14 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1929</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^ROLL(EK1101)^Roll_KA4 (EL1904)^Module 1 (FSOES)^TxPDO^FSOE^RollNePowerSup1]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Roll_NE_Power_Supplyply2</Name>
@@ -21357,6 +23229,14 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1930</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^ROLL(EK1101)^Roll_KA4 (EL1904)^Module 1 (FSOES)^TxPDO^FSOE^RollNePowerSup2]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Roll_NE_Power_Supplyply3</Name>
@@ -21364,6 +23244,14 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1931</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^ROLL(EK1101)^Roll_KA4 (EL1904)^Module 1 (FSOES)^TxPDO^FSOE^RollNePowerSup3]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Roll_NE_Prop_Power_</Name>
@@ -21371,6 +23259,14 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1932</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^ROLL(EK1101)^Roll_KA4 (EL1904)^Module 1 (FSOES)^TxPDO^FSOE^RollNePropPower]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Roll_NR_Power_Supplyply1</Name>
@@ -21378,6 +23274,14 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1933</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^ROLL(EK1101)^Roll_KA5 (EL1904)^Module 1 (FSOES)^TxPDO^FSOE^RollNrPowerSup1]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Roll_NR_Power_Supplyply2</Name>
@@ -21385,6 +23289,14 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1934</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^ROLL(EK1101)^Roll_KA5 (EL1904)^Module 1 (FSOES)^TxPDO^FSOE^RollNrPowerSup2]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Roll_NR_Power_Supplyply3</Name>
@@ -21392,6 +23304,14 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1935</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^ROLL(EK1101)^Roll_KA5 (EL1904)^Module 1 (FSOES)^TxPDO^FSOE^RollNrPowerSup3]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Roll_NR_Prop_Power</Name>
@@ -21399,6 +23319,14 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1936</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^ROLL(EK1101)^Roll_KA5 (EL1904)^Module 1 (FSOES)^TxPDO^FSOE^RollNrPropPower]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Yaw1_Error</Name>
@@ -21406,6 +23334,14 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1937</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS1(EK1101)^Yaw1_KA5 (EL1904)^Module 1 (FSOES)^TxPDO^FSOE^Yaw1Error]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Input">.Yaw2_Error</Name>
@@ -21413,16 +23349,32 @@
 			<IGroup>61473</IGroup>
 			<IOffset VarConfig="Changeable">1938</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS2 (EK1101)^Yaw2_KA5 (EL1904)^Module 1 (FSOES)^TxPDO^FSOE^Yaw2Error]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name Static="Input" TaskPrio="1">.Emergency_Out</Name>
+			<Name Static="Input" TaskPrio="4">.Emergency_Out</Name>
 			<Type>BOOL</Type>
 			<Comment>
 				<![CDATA[急停安全模块输出，用于判断安全信号急停]]>
 			</Comment>
 			<IGroup>61473</IGroup>
-			<IOffset VarConfig="Changeable">1939</IOffset>
+			<IOffset VarConfig="Changeable">10144</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA8 (EL6900)^Module 2 (FSOE)^Standard Out Vars TxPDO 1^Standard Out Var 5]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output" TaskPrio="1">.Yaw_Not_Enable</Name>
@@ -21430,13 +23382,29 @@
 			<IGroup>61489</IGroup>
 			<IOffset VarConfig="Changeable">704</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA14 (EL2904)^Module 2 (DO)^RxPDO^YawNotEnable]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name Static="Output" TaskPrio="3">.Roll_Pitch_Not_Enable</Name>
+			<Name Static="Output" TaskPrio="1">.Roll_Pitch_Not_Enable</Name>
 			<Type>BOOL</Type>
 			<IGroup>61489</IGroup>
 			<IOffset VarConfig="Changeable">705</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA14 (EL2904)^Module 2 (DO)^RxPDO^RollPitchNotEnable]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.System_No_Emg</Name>
@@ -21444,6 +23412,14 @@
 			<IGroup>61489</IGroup>
 			<IOffset VarConfig="Changeable">706</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA14 (EL2904)^Module 2 (DO)^RxPDO^SystemNoEmg]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.Pitch_NE_Prop_Enable</Name>
@@ -21451,6 +23427,14 @@
 			<IGroup>61489</IGroup>
 			<IOffset VarConfig="Changeable">736</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^PITCH(EK1101)^Pitch_KA11 (EL2904)^Module 2 (DO)^RxPDO^PitchNePropEnable]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.Pitch_NE_Emg_Enable</Name>
@@ -21458,6 +23442,14 @@
 			<IGroup>61489</IGroup>
 			<IOffset VarConfig="Changeable">737</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^PITCH(EK1101)^Pitch_KA11 (EL2904)^Module 2 (DO)^RxPDO^PitchNeEmgEnable]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.Pitch_NR_Prop_Enable</Name>
@@ -21465,6 +23457,14 @@
 			<IGroup>61489</IGroup>
 			<IOffset VarConfig="Changeable">738</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^PITCH(EK1101)^Pitch_KA11 (EL2904)^Module 2 (DO)^RxPDO^PitchNrPropEnable]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.Pitch_NR_Emg_Enable</Name>
@@ -21472,6 +23472,14 @@
 			<IGroup>61489</IGroup>
 			<IOffset VarConfig="Changeable">739</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^PITCH(EK1101)^Pitch_KA11 (EL2904)^Module 2 (DO)^RxPDO^PitchNrEmgEnable]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.Roll_NE_Prop_Enable</Name>
@@ -21479,6 +23487,14 @@
 			<IGroup>61489</IGroup>
 			<IOffset VarConfig="Changeable">740</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^ROLL(EK1101)^Roll_KA11 (EL2904)^Module 2 (DO)^RxPDO^RollNePropEnable]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.Roll_NE_Emg_Enable</Name>
@@ -21486,6 +23502,14 @@
 			<IGroup>61489</IGroup>
 			<IOffset VarConfig="Changeable">741</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^ROLL(EK1101)^Roll_KA11 (EL2904)^Module 2 (DO)^RxPDO^RollNeEmgEnable]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.Roll_NR_Prop_Enable</Name>
@@ -21493,6 +23517,14 @@
 			<IGroup>61489</IGroup>
 			<IOffset VarConfig="Changeable">742</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^ROLL(EK1101)^Roll_KA11 (EL2904)^Module 2 (DO)^RxPDO^RollNrPropEnable]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.Roll_NR_Emg_Enable</Name>
@@ -21500,6 +23532,14 @@
 			<IGroup>61489</IGroup>
 			<IOffset VarConfig="Changeable">743</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA11 (EK1122)^ROLL(EK1101)^Roll_KA11 (EL2904)^Module 2 (DO)^RxPDO^RollNrEmgEnable]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.Yaw1_Enable</Name>
@@ -21507,6 +23547,14 @@
 			<IGroup>61489</IGroup>
 			<IOffset VarConfig="Changeable">744</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS1(EK1101)^Yaw1_KA10 (EL2904)^Module 1 (FSOES)^RxPDO^FSOE^Yaw1Enable]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
 			<Name Static="Output">.Yaw2_Enable</Name>
@@ -21517,9 +23565,17 @@
 			<IGroup>61489</IGroup>
 			<IOffset VarConfig="Changeable">745</IOffset>
 			<BitSize>1</BitSize>
+			<Properties>
+				<Property>
+					<Name>LinkedWith</Name>
+					<Value>
+						<![CDATA[TIID^Device 3 (EtherCAT)^Control_Cabinet(EK1100)^Ctrl_Cab_KA12 (EK1122)^YAW_AXIS2 (EK1101)^Yaw2_KA10 (EL2904)^Module 2 (DO)^RxPDO^Yaw2Enable]]>
+					</Value>
+				</Property>
+			</Properties>
 		</Symbol>
 		<Symbol>
-			<Name>.ProblemCode</Name>
+			<Name TaskPrio="4">.ProblemCode</Name>
 			<Type Decoration="200100F8">ARRAY [1..10] OF INT</Type>
 			<Comment>
 				<![CDATA[故障码	0：无故障；
@@ -21528,7 +23584,7 @@
 	11：]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>181172</IOffset>
+			<IOffset>194698</IOffset>
 			<BitSize>160</BitSize>
 		</Symbol>
 		<Symbol>
@@ -21576,7 +23632,7 @@
 				<![CDATA[2..100]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>181192</IOffset>
+			<IOffset>194718</IOffset>
 			<BitSize>16</BitSize>
 		</Symbol>
 		<Symbol>
@@ -21586,7 +23642,7 @@
 				<![CDATA[IEC prefixes for binary, octal or hexadecimal type]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>181194</IOffset>
+			<IOffset>194720</IOffset>
 			<BitSize>16</BitSize>
 		</Symbol>
 		<Symbol>
@@ -21596,7 +23652,7 @@
 				<![CDATA[Windows SBCS (Single Byte Character Set) Code Page Table]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>181196</IOffset>
+			<IOffset>194722</IOffset>
 			<BitSize>16</BitSize>
 		</Symbol>
 		<Symbol>
@@ -21606,7 +23662,7 @@
 				<![CDATA[0 == pulse < 140ms, 1 == pulse > 140]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>181198</IOffset>
+			<IOffset>194724</IOffset>
 			<BitSize>32</BitSize>
 		</Symbol>
 		<Symbol>
@@ -21616,7 +23672,7 @@
 				<![CDATA[TRUE = Enable plausibility check (two telegrams are checked), FALSE = Disable check]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>181202</IOffset>
+			<IOffset>194728</IOffset>
 			<BitSize>8</BitSize>
 		</Symbol>
 		<Symbol>
@@ -21626,7 +23682,7 @@
 				<![CDATA[semicolon (;) := 16#3B => german field separator, comma (,) := 16#2C => US field separator]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>181203</IOffset>
+			<IOffset>194729</IOffset>
 			<BitSize>8</BitSize>
 		</Symbol>
 		<Symbol>
@@ -21636,7 +23692,7 @@
 				<![CDATA[System Service file functions]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>188888</IOffset>
+			<IOffset>202414</IOffset>
 			<BitSize>1168</BitSize>
 		</Symbol>
 		<Symbol>
@@ -21646,7 +23702,7 @@
 				<![CDATA[Lower and upper case ASCII codes of hexadecimal digits]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>189034</IOffset>
+			<IOffset>202560</IOffset>
 			<BitSize>80</BitSize>
 		</Symbol>
 		<Symbol>
@@ -21656,7 +23712,7 @@
 				<![CDATA[ASCII to decimal and decimal digits to ASCII codes]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>189044</IOffset>
+			<IOffset>202570</IOffset>
 			<BitSize>256</BitSize>
 		</Symbol>
 		<Symbol>
@@ -21666,7 +23722,7 @@
 				<![CDATA[Default precision values ( -1 => disabled (prints all characters or has special function)]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>189076</IOffset>
+			<IOffset>202602</IOffset>
 			<BitSize>80</BitSize>
 		</Symbol>
 		<Symbol>
@@ -21676,7 +23732,7 @@
 				<![CDATA[plc var type support mask]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>189086</IOffset>
+			<IOffset>202612</IOffset>
 			<BitSize>192</BitSize>
 		</Symbol>
 		<Symbol>
@@ -21686,7 +23742,7 @@
 				<![CDATA[TYPEFIELD_EL]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>189110</IOffset>
+			<IOffset>202636</IOffset>
 			<BitSize>1824</BitSize>
 		</Symbol>
 		<Symbol>
@@ -21696,7 +23752,7 @@
 				<![CDATA[PREFIXFLAG_HASH]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>189338</IOffset>
+			<IOffset>202864</IOffset>
 			<BitSize>384</BitSize>
 		</Symbol>
 		<Symbol>
@@ -21706,56 +23762,56 @@
 				<![CDATA[HASHPREFIX_STDC]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>189386</IOffset>
+			<IOffset>202912</IOffset>
 			<BitSize>2112</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name Constant="1" IsDefinedInLibrary="1">.ARGTYPE_IS_SIGNED_TYPE</Name>
 			<Type Decoration="20010149">ARRAY [0..18] OF BOOL</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>189650</IOffset>
+			<IOffset>203176</IOffset>
 			<BitSize>152</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name Constant="1" IsDefinedInLibrary="1">.ARGTYPE_IS_FLOAT_TYPE</Name>
 			<Type Decoration="20010149">ARRAY [0..18] OF BOOL</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>189669</IOffset>
+			<IOffset>203195</IOffset>
 			<BitSize>152</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name Constant="1" IsDefinedInLibrary="1">.ARGTYPE_IS_STRING_TYPE</Name>
 			<Type Decoration="20010149">ARRAY [0..18] OF BOOL</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>189688</IOffset>
+			<IOffset>203214</IOffset>
 			<BitSize>152</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name Constant="1" IsDefinedInLibrary="1">.ARGTYPE_IS_UNSIGNED_TYPE</Name>
 			<Type Decoration="20010149">ARRAY [0..18] OF BOOL</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>189707</IOffset>
+			<IOffset>203233</IOffset>
 			<BitSize>152</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name Constant="1" IsDefinedInLibrary="1">.ARGTYPE_IS_BIT_TYPE</Name>
 			<Type Decoration="20010149">ARRAY [0..18] OF BOOL</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>189726</IOffset>
+			<IOffset>203252</IOffset>
 			<BitSize>152</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name Constant="1" IsDefinedInLibrary="1">.SYSTEMTIME_MAX_MONTHDAYS</Name>
 			<Type Decoration="2002015B">ARRAY [0..1, 1..12] OF WORD</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>189745</IOffset>
+			<IOffset>203271</IOffset>
 			<BitSize>384</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name Constant="1" IsDefinedInLibrary="1">.SYSTEMTIME_MAX_YEARSDAY</Name>
 			<Type Decoration="2002015B">ARRAY [0..1, 0..13] OF WORD</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>189793</IOffset>
+			<IOffset>203319</IOffset>
 			<BitSize>448</BitSize>
 		</Symbol>
 		<Symbol>
@@ -21765,7 +23821,7 @@
 				<![CDATA[Number of 100ns ticks per millisecond]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>189849</IOffset>
+			<IOffset>203375</IOffset>
 			<BitSize>64</BitSize>
 		</Symbol>
 		<Symbol>
@@ -21775,7 +23831,7 @@
 				<![CDATA[Number of 100ns ticks per second]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>189857</IOffset>
+			<IOffset>203383</IOffset>
 			<BitSize>64</BitSize>
 		</Symbol>
 		<Symbol>
@@ -21785,7 +23841,7 @@
 				<![CDATA[Number of 100ns ticks per day]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>189865</IOffset>
+			<IOffset>203391</IOffset>
 			<BitSize>64</BitSize>
 		</Symbol>
 		<Symbol>
@@ -21795,7 +23851,7 @@
 				<![CDATA[min. DT value as file time DT#1970-01-01-00:00:00]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>189873</IOffset>
+			<IOffset>203399</IOffset>
 			<BitSize>64</BitSize>
 		</Symbol>
 		<Symbol>
@@ -21805,7 +23861,7 @@
 				<![CDATA[max. DT value as file time DT#2106-02-06-06:28:15]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>189881</IOffset>
+			<IOffset>203407</IOffset>
 			<BitSize>64</BitSize>
 		</Symbol>
 		<Symbol>
@@ -21815,14 +23871,14 @@
 				<![CDATA[Windows SBCS tables]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>189889</IOffset>
+			<IOffset>203415</IOffset>
 			<BitSize>864</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name Constant="1" IsDefinedInLibrary="1">.SBCS_TABLES</Name>
 			<Type Decoration="2001635C">ARRAY [1..2] OF ST_SBCSTable</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>189997</IOffset>
+			<IOffset>203523</IOffset>
 			<BitSize>4096</BitSize>
 		</Symbol>
 		<Symbol>
@@ -21832,42 +23888,42 @@
 				<![CDATA[CRC16-CCITT lookup table ( 0x1021 as generator polynomial )]]>
 			</Comment>
 			<IGroup>16448</IGroup>
-			<IOffset>190509</IOffset>
+			<IOffset>204035</IOffset>
 			<BitSize>2048</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name Constant="1" IsDefinedInLibrary="1">.GLOBAL_CRC_CCITT_TABLE</Name>
 			<Type Decoration="2001024D">ARRAY [0..255] OF WORD</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>190765</IOffset>
+			<IOffset>204291</IOffset>
 			<BitSize>4096</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name Constant="1" IsDefinedInLibrary="1">.DWORD_DECADE_DIVIDER</Name>
 			<Type Decoration="2001019C">ARRAY [0..9] OF DWORD</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>205643</IOffset>
+			<IOffset>219169</IOffset>
 			<BitSize>320</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name Constant="1" IsDefinedInLibrary="1">.WORD_DECADE_DIVIDER</Name>
 			<Type Decoration="20010152">ARRAY [0..4] OF WORD</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>205683</IOffset>
+			<IOffset>219209</IOffset>
 			<BitSize>80</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name Constant="1" IsDefinedInLibrary="1">.BYTE_DECADE_DIVIDER</Name>
 			<Type Decoration="20010147">ARRAY [0..2] OF BYTE</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>205693</IOffset>
+			<IOffset>219219</IOffset>
 			<BitSize>24</BitSize>
 		</Symbol>
 		<Symbol>
 			<Name Constant="1" IsDefinedInLibrary="1">.EMPTY_GUID_STRUCT</Name>
 			<Type Decoration="10042FD3">GUID</Type>
 			<IGroup>16448</IGroup>
-			<IOffset>205696</IOffset>
+			<IOffset>219222</IOffset>
 			<BitSize>128</BitSize>
 		</Symbol>
 	</Symbols>
@@ -21876,7 +23932,7 @@
 			<Name Static="Output" TaskPrio="1">MAIN.ExecGHCommander1.Yaw_To_Position1.axis1.PlcToNc</Name>
 			<Type Decoration="10148B18">PLCTONC_AXIS_REF</Type>
 			<IGroup>61488</IGroup>
-			<IOffset VarConfig="Unknown">0</IOffset>
+			<IOffset VarConfig="Changeable">96</IOffset>
 			<BitSize>1024</BitSize>
 			<Parent>
 				<Name SubItem="PlcToNc">MAIN.ExecGHCommander1.Yaw_To_Position1.axis1</Name>
@@ -21884,18 +23940,18 @@
 			</Parent>
 			<Parent>
 				<Name SubItem="axis1">MAIN.ExecGHCommander1.Yaw_To_Position1</Name>
-				<Type Decoration="1009EFE2">Yaw_To_Position</Type>
+				<Type Decoration="100DCCE5">Yaw_To_Position</Type>
 			</Parent>
 			<Parent>
 				<Name SubItem="axis1">MAIN.ExecGHCommander1</Name>
-				<Type Decoration="10031D00">ExecGHCommander</Type>
+				<Type Decoration="1002E9AA">ExecGHCommander</Type>
 			</Parent>
 		</VarConfig>
 		<VarConfig>
 			<Name Static="Input" TaskPrio="1">MAIN.ExecGHCommander1.Yaw_To_Position1.axis1.NcToPlc</Name>
 			<Type Decoration="1019718A">NCTOPLC_AXIS_REF</Type>
 			<IGroup>61472</IGroup>
-			<IOffset VarConfig="Unknown">0</IOffset>
+			<IOffset VarConfig="Changeable">244</IOffset>
 			<BitSize>1024</BitSize>
 			<Parent>
 				<Name SubItem="NcToPlc">MAIN.ExecGHCommander1.Yaw_To_Position1.axis1</Name>
@@ -21903,18 +23959,18 @@
 			</Parent>
 			<Parent>
 				<Name SubItem="axis1">MAIN.ExecGHCommander1.Yaw_To_Position1</Name>
-				<Type Decoration="1009EFE2">Yaw_To_Position</Type>
+				<Type Decoration="100DCCE5">Yaw_To_Position</Type>
 			</Parent>
 			<Parent>
 				<Name SubItem="axis1">MAIN.ExecGHCommander1</Name>
-				<Type Decoration="10031D00">ExecGHCommander</Type>
+				<Type Decoration="1002E9AA">ExecGHCommander</Type>
 			</Parent>
 		</VarConfig>
 		<VarConfig>
 			<Name Static="Output" TaskPrio="1">MAIN.ExecGHCommander1.Yaw_To_Position1.axis2.PlcToNc</Name>
 			<Type Decoration="10148B18">PLCTONC_AXIS_REF</Type>
 			<IGroup>61488</IGroup>
-			<IOffset VarConfig="Unknown">0</IOffset>
+			<IOffset VarConfig="Changeable">224</IOffset>
 			<BitSize>1024</BitSize>
 			<Parent>
 				<Name SubItem="PlcToNc">MAIN.ExecGHCommander1.Yaw_To_Position1.axis2</Name>
@@ -21922,18 +23978,18 @@
 			</Parent>
 			<Parent>
 				<Name SubItem="axis2">MAIN.ExecGHCommander1.Yaw_To_Position1</Name>
-				<Type Decoration="1009EFE2">Yaw_To_Position</Type>
+				<Type Decoration="100DCCE5">Yaw_To_Position</Type>
 			</Parent>
 			<Parent>
 				<Name SubItem="axis2">MAIN.ExecGHCommander1</Name>
-				<Type Decoration="10031D00">ExecGHCommander</Type>
+				<Type Decoration="1002E9AA">ExecGHCommander</Type>
 			</Parent>
 		</VarConfig>
 		<VarConfig>
 			<Name Static="Input" TaskPrio="1">MAIN.ExecGHCommander1.Yaw_To_Position1.axis2.NcToPlc</Name>
 			<Type Decoration="1019718A">NCTOPLC_AXIS_REF</Type>
 			<IGroup>61472</IGroup>
-			<IOffset VarConfig="Unknown">0</IOffset>
+			<IOffset VarConfig="Changeable">372</IOffset>
 			<BitSize>1024</BitSize>
 			<Parent>
 				<Name SubItem="NcToPlc">MAIN.ExecGHCommander1.Yaw_To_Position1.axis2</Name>
@@ -21941,163 +23997,87 @@
 			</Parent>
 			<Parent>
 				<Name SubItem="axis2">MAIN.ExecGHCommander1.Yaw_To_Position1</Name>
-				<Type Decoration="1009EFE2">Yaw_To_Position</Type>
+				<Type Decoration="100DCCE5">Yaw_To_Position</Type>
 			</Parent>
 			<Parent>
 				<Name SubItem="axis2">MAIN.ExecGHCommander1</Name>
-				<Type Decoration="10031D00">ExecGHCommander</Type>
+				<Type Decoration="1002E9AA">ExecGHCommander</Type>
 			</Parent>
 		</VarConfig>
 		<VarConfig>
-			<Name Static="Output" TaskPrio="1">MAIN.ExecGHCommander1.Yaw_To_Position2.axis1.PlcToNc</Name>
+			<Name Static="Output" TaskPrio="1">MAIN.ExecButtonCommander1.Yaw_To_Position1.axis1.PlcToNc</Name>
 			<Type Decoration="10148B18">PLCTONC_AXIS_REF</Type>
 			<IGroup>61488</IGroup>
-			<IOffset VarConfig="Unknown">0</IOffset>
+			<IOffset VarConfig="Changeable">864</IOffset>
 			<BitSize>1024</BitSize>
 			<Parent>
-				<Name SubItem="PlcToNc">MAIN.ExecGHCommander1.Yaw_To_Position2.axis1</Name>
+				<Name SubItem="PlcToNc">MAIN.ExecButtonCommander1.Yaw_To_Position1.axis1</Name>
 				<Type Decoration="1006BE2E">_FBAXIS_REF</Type>
 			</Parent>
 			<Parent>
-				<Name SubItem="axis1">MAIN.ExecGHCommander1.Yaw_To_Position2</Name>
-				<Type Decoration="1009EFE2">Yaw_To_Position</Type>
+				<Name SubItem="axis1">MAIN.ExecButtonCommander1.Yaw_To_Position1</Name>
+				<Type Decoration="100DCCE5">Yaw_To_Position</Type>
 			</Parent>
 			<Parent>
-				<Name SubItem="axis1">MAIN.ExecGHCommander1</Name>
-				<Type Decoration="10031D00">ExecGHCommander</Type>
+				<Name SubItem="axis1">MAIN.ExecButtonCommander1</Name>
+				<Type Decoration="1008708F">ExecButtonCommander</Type>
 			</Parent>
 		</VarConfig>
 		<VarConfig>
-			<Name Static="Input" TaskPrio="1">MAIN.ExecGHCommander1.Yaw_To_Position2.axis1.NcToPlc</Name>
+			<Name Static="Input" TaskPrio="1">MAIN.ExecButtonCommander1.Yaw_To_Position1.axis1.NcToPlc</Name>
 			<Type Decoration="1019718A">NCTOPLC_AXIS_REF</Type>
 			<IGroup>61472</IGroup>
-			<IOffset VarConfig="Unknown">0</IOffset>
+			<IOffset VarConfig="Changeable">1012</IOffset>
 			<BitSize>1024</BitSize>
 			<Parent>
-				<Name SubItem="NcToPlc">MAIN.ExecGHCommander1.Yaw_To_Position2.axis1</Name>
+				<Name SubItem="NcToPlc">MAIN.ExecButtonCommander1.Yaw_To_Position1.axis1</Name>
 				<Type Decoration="1006BE2E">_FBAXIS_REF</Type>
 			</Parent>
 			<Parent>
-				<Name SubItem="axis1">MAIN.ExecGHCommander1.Yaw_To_Position2</Name>
-				<Type Decoration="1009EFE2">Yaw_To_Position</Type>
+				<Name SubItem="axis1">MAIN.ExecButtonCommander1.Yaw_To_Position1</Name>
+				<Type Decoration="100DCCE5">Yaw_To_Position</Type>
 			</Parent>
 			<Parent>
-				<Name SubItem="axis1">MAIN.ExecGHCommander1</Name>
-				<Type Decoration="10031D00">ExecGHCommander</Type>
+				<Name SubItem="axis1">MAIN.ExecButtonCommander1</Name>
+				<Type Decoration="1008708F">ExecButtonCommander</Type>
 			</Parent>
 		</VarConfig>
 		<VarConfig>
-			<Name Static="Output" TaskPrio="1">MAIN.ExecGHCommander1.Yaw_To_Position2.axis2.PlcToNc</Name>
+			<Name Static="Output" TaskPrio="1">MAIN.ExecButtonCommander1.Yaw_To_Position1.axis2.PlcToNc</Name>
 			<Type Decoration="10148B18">PLCTONC_AXIS_REF</Type>
 			<IGroup>61488</IGroup>
-			<IOffset VarConfig="Unknown">0</IOffset>
+			<IOffset VarConfig="Changeable">992</IOffset>
 			<BitSize>1024</BitSize>
 			<Parent>
-				<Name SubItem="PlcToNc">MAIN.ExecGHCommander1.Yaw_To_Position2.axis2</Name>
+				<Name SubItem="PlcToNc">MAIN.ExecButtonCommander1.Yaw_To_Position1.axis2</Name>
 				<Type Decoration="1006BE2E">_FBAXIS_REF</Type>
 			</Parent>
 			<Parent>
-				<Name SubItem="axis2">MAIN.ExecGHCommander1.Yaw_To_Position2</Name>
-				<Type Decoration="1009EFE2">Yaw_To_Position</Type>
+				<Name SubItem="axis2">MAIN.ExecButtonCommander1.Yaw_To_Position1</Name>
+				<Type Decoration="100DCCE5">Yaw_To_Position</Type>
 			</Parent>
 			<Parent>
-				<Name SubItem="axis2">MAIN.ExecGHCommander1</Name>
-				<Type Decoration="10031D00">ExecGHCommander</Type>
+				<Name SubItem="axis2">MAIN.ExecButtonCommander1</Name>
+				<Type Decoration="1008708F">ExecButtonCommander</Type>
 			</Parent>
 		</VarConfig>
 		<VarConfig>
-			<Name Static="Input" TaskPrio="1">MAIN.ExecGHCommander1.Yaw_To_Position2.axis2.NcToPlc</Name>
+			<Name Static="Input" TaskPrio="1">MAIN.ExecButtonCommander1.Yaw_To_Position1.axis2.NcToPlc</Name>
 			<Type Decoration="1019718A">NCTOPLC_AXIS_REF</Type>
 			<IGroup>61472</IGroup>
-			<IOffset VarConfig="Unknown">0</IOffset>
+			<IOffset VarConfig="Changeable">1140</IOffset>
 			<BitSize>1024</BitSize>
 			<Parent>
-				<Name SubItem="NcToPlc">MAIN.ExecGHCommander1.Yaw_To_Position2.axis2</Name>
+				<Name SubItem="NcToPlc">MAIN.ExecButtonCommander1.Yaw_To_Position1.axis2</Name>
 				<Type Decoration="1006BE2E">_FBAXIS_REF</Type>
 			</Parent>
 			<Parent>
-				<Name SubItem="axis2">MAIN.ExecGHCommander1.Yaw_To_Position2</Name>
-				<Type Decoration="1009EFE2">Yaw_To_Position</Type>
+				<Name SubItem="axis2">MAIN.ExecButtonCommander1.Yaw_To_Position1</Name>
+				<Type Decoration="100DCCE5">Yaw_To_Position</Type>
 			</Parent>
 			<Parent>
-				<Name SubItem="axis2">MAIN.ExecGHCommander1</Name>
-				<Type Decoration="10031D00">ExecGHCommander</Type>
-			</Parent>
-		</VarConfig>
-		<VarConfig>
-			<Name Static="Output" TaskPrio="1">MAIN.ExecGHCommander1.Yaw_To_Position3.axis1.PlcToNc</Name>
-			<Type Decoration="10148B18">PLCTONC_AXIS_REF</Type>
-			<IGroup>61488</IGroup>
-			<IOffset VarConfig="Unknown">0</IOffset>
-			<BitSize>1024</BitSize>
-			<Parent>
-				<Name SubItem="PlcToNc">MAIN.ExecGHCommander1.Yaw_To_Position3.axis1</Name>
-				<Type Decoration="1006BE2E">_FBAXIS_REF</Type>
-			</Parent>
-			<Parent>
-				<Name SubItem="axis1">MAIN.ExecGHCommander1.Yaw_To_Position3</Name>
-				<Type Decoration="1009EFE2">Yaw_To_Position</Type>
-			</Parent>
-			<Parent>
-				<Name SubItem="axis1">MAIN.ExecGHCommander1</Name>
-				<Type Decoration="10031D00">ExecGHCommander</Type>
-			</Parent>
-		</VarConfig>
-		<VarConfig>
-			<Name Static="Input" TaskPrio="1">MAIN.ExecGHCommander1.Yaw_To_Position3.axis1.NcToPlc</Name>
-			<Type Decoration="1019718A">NCTOPLC_AXIS_REF</Type>
-			<IGroup>61472</IGroup>
-			<IOffset VarConfig="Unknown">0</IOffset>
-			<BitSize>1024</BitSize>
-			<Parent>
-				<Name SubItem="NcToPlc">MAIN.ExecGHCommander1.Yaw_To_Position3.axis1</Name>
-				<Type Decoration="1006BE2E">_FBAXIS_REF</Type>
-			</Parent>
-			<Parent>
-				<Name SubItem="axis1">MAIN.ExecGHCommander1.Yaw_To_Position3</Name>
-				<Type Decoration="1009EFE2">Yaw_To_Position</Type>
-			</Parent>
-			<Parent>
-				<Name SubItem="axis1">MAIN.ExecGHCommander1</Name>
-				<Type Decoration="10031D00">ExecGHCommander</Type>
-			</Parent>
-		</VarConfig>
-		<VarConfig>
-			<Name Static="Output" TaskPrio="1">MAIN.ExecGHCommander1.Yaw_To_Position3.axis2.PlcToNc</Name>
-			<Type Decoration="10148B18">PLCTONC_AXIS_REF</Type>
-			<IGroup>61488</IGroup>
-			<IOffset VarConfig="Unknown">0</IOffset>
-			<BitSize>1024</BitSize>
-			<Parent>
-				<Name SubItem="PlcToNc">MAIN.ExecGHCommander1.Yaw_To_Position3.axis2</Name>
-				<Type Decoration="1006BE2E">_FBAXIS_REF</Type>
-			</Parent>
-			<Parent>
-				<Name SubItem="axis2">MAIN.ExecGHCommander1.Yaw_To_Position3</Name>
-				<Type Decoration="1009EFE2">Yaw_To_Position</Type>
-			</Parent>
-			<Parent>
-				<Name SubItem="axis2">MAIN.ExecGHCommander1</Name>
-				<Type Decoration="10031D00">ExecGHCommander</Type>
-			</Parent>
-		</VarConfig>
-		<VarConfig>
-			<Name Static="Input" TaskPrio="1">MAIN.ExecGHCommander1.Yaw_To_Position3.axis2.NcToPlc</Name>
-			<Type Decoration="1019718A">NCTOPLC_AXIS_REF</Type>
-			<IGroup>61472</IGroup>
-			<IOffset VarConfig="Unknown">0</IOffset>
-			<BitSize>1024</BitSize>
-			<Parent>
-				<Name SubItem="NcToPlc">MAIN.ExecGHCommander1.Yaw_To_Position3.axis2</Name>
-				<Type Decoration="1006BE2E">_FBAXIS_REF</Type>
-			</Parent>
-			<Parent>
-				<Name SubItem="axis2">MAIN.ExecGHCommander1.Yaw_To_Position3</Name>
-				<Type Decoration="1009EFE2">Yaw_To_Position</Type>
-			</Parent>
-			<Parent>
-				<Name SubItem="axis2">MAIN.ExecGHCommander1</Name>
-				<Type Decoration="10031D00">ExecGHCommander</Type>
+				<Name SubItem="axis2">MAIN.ExecButtonCommander1</Name>
+				<Type Decoration="1008708F">ExecButtonCommander</Type>
 			</Parent>
 		</VarConfig>
 	</VarConfigs>
